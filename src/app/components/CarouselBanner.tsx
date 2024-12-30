@@ -1,9 +1,7 @@
 "use client"
 
 import Autoplay from "embla-carousel-autoplay"
-import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
-import { useEffect } from "react"
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
@@ -19,7 +17,7 @@ export default function CarouselBanner() {
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.id} className="relative h-96">
-            <Image src={item.src} alt={item.alt} layout="fill" />
+            <Image src={item.src} alt={item.alt} fill />
           </CarouselItem>
         ))}
       </CarouselContent>

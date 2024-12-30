@@ -5,11 +5,11 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 
-import ToggleTheme from "./Toggle-Theme"
+import ToggleTheme from "./ToggleTheme"
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="z-10 bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <div className="flex space-x-4 dark:text-black">
           <Button className="text-lg" variant="ghost">
