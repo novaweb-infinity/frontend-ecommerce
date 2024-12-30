@@ -1,5 +1,4 @@
-import Carousel from "./components/Carousel"
-import Footer from "./components/Footer"
+import CarouselBanner from "./components/CarouselBanner"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
 import NewArrivals from "./components/NewArrivals"
@@ -11,11 +10,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Carousel />
+        <CarouselBanner />
         <NewArrivals />
         <TopSales />
       </main>
-      <Footer />
     </div>
   )
 }

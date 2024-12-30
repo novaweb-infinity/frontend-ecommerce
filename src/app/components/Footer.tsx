@@ -2,6 +2,8 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className="bg-gray-800 py-8 text-white">
       <div className="container mx-auto px-4">
@@ -62,7 +64,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 text-center">
-          <p>&copy; 2023 Tu Tienda de Ropa. Todos los derechos reservados.</p>
+          <p>&copy; {currentYear} Tu Tienda de Ropa. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
