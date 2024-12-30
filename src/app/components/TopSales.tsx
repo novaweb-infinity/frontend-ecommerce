@@ -1,3 +1,9 @@
+"use client"
+
+import { useEffect } from "react"
+
+import { getTopSales } from "@/service/getTopSales"
+
 import ProductCard from "./ProductCard"
 
 const topProducts = [
@@ -7,6 +13,15 @@ const topProducts = [
 ]
 
 export default function TopSales() {
+  useEffect(() => {
+    const fetchTopSales = async () => {
+      const products = await getTopSales()
+      console.log("Productos recibidos en el componente:", products)
+    }
+
+    fetchTopSales()
+  }, [])
+
   return (
     <section className="bg-gray-100 py-8">
       <div className="container mx-auto px-4">
