@@ -3,6 +3,7 @@
 import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
+import { useEffect } from "react"
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
@@ -14,7 +15,7 @@ const items = [
 
 export default function CarouselBanner() {
   return (
-    <Carousel plugins={[Autoplay({ delay: 2500 })]}>
+    <Carousel plugins={[Autoplay({ delay: 2000 })]}>
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.id} className="relative h-96">
