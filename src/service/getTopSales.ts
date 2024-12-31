@@ -1,13 +1,34 @@
 import apiClient from "@/api/apiClient"
-import { Product } from "@/store/slices/productsSlice"
+import { ApiResponse, Product } from "@/types"
 
-export const getTopSales = async () => {
+const params = {}
+
+export const getTopSales = async (): Promise<Product[]> => {
   try {
-    const response = await apiClient.get<Product[]>("/products?filters[topVentas][$eq]=true&populate=images")
+    const response = await apiClient.get<ApiResponse<Product[]>>("/products", {
+      params: {
+        filters: {
+          topVentas: {
+            $eq: true,
+          },
+        },
+        populate: "images",
+      },
+    })
+    console.log("Respuesta de la API:", response)
+
+    if (!response.data || !Array.isArray(response.data.data)) {
+      throw new Error("Hubo un problema al obtener los productos. Inténtalo más tarde.")
+    }
     console.log("Productos recibidos en el servicio:", response.data)
-    return response.data
-  } catch (error) {
-    console.error("Error al obtener los productos más vendidos:", error)
-    throw new Error("Error al obtener los productos más vendidos")
+    return response.data.data
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error al obtener los productos:", error.message)
+    } else {
+      console.error("Error desconocido al obtener los productos")
+    }
+
+    throw new Error("Error al obtener los productos. Inténtalo más tarde.")
   }
 }

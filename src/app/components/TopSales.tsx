@@ -15,8 +15,16 @@ const topProducts = [
 export default function TopSales() {
   useEffect(() => {
     const fetchTopSales = async () => {
-      const products = await getTopSales()
-      console.log("Productos recibidos en el componente:", products)
+      try {
+        const products = await getTopSales()
+        console.log("Productos recibidos en el componente:", products)
+      } catch (err) {
+        if (err instanceof Error) {
+          console.error("Error al obtener los productos:", err.message)
+        } else {
+          console.error("Error desconocido al obtener los productos")
+        }
+      }
     }
 
     fetchTopSales()
