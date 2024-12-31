@@ -45,4 +45,5 @@ export interface ProductImage {
 // Type definitions for the products state
 export interface ProductsState {
   products: Product[]
+  topSales: Product[]
 }

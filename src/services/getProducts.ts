@@ -1,17 +1,11 @@
 import apiClient from "@/api/apiClient"
 import { ApiResponse, Product } from "@/types"
 
-const params = {}
-
-export const getTopSales = async (): Promise<Product[]> => {
+export const getProducts = async (filters: Record<string, any>): Promise<Product[]> => {
   try {
     const response = await apiClient.get<ApiResponse<Product[]>>("/products", {
       params: {
-        filters: {
-          topVentas: {
-            $eq: true,
-          },
-        },
+        filters,
         populate: "images",
       },
     })

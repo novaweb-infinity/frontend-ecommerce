@@ -4,6 +4,7 @@ import { Product, ProductsState } from "@/types"
 
 const initialState: ProductsState = {
   products: [],
+  topSales: [],
 }
 
 const productsSlice = createSlice({
@@ -13,8 +14,11 @@ const productsSlice = createSlice({
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload
     },
+    setTopSales: (state, action: PayloadAction<Product[]>) => {
+      state.topSales = action.payload
+    },
   },
 })
 
-export const { setProducts } = productsSlice.actions
+export const { setProducts, setTopSales } = productsSlice.actions
 export default productsSlice.reducer
