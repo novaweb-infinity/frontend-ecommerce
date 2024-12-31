@@ -7,8 +7,11 @@ export const useGetTopSales = () => {
   const dispatch = useDispatch()
 
   const getTopSales = async () => {
-    const filters = { topVentas: { $eq: true } }
-    const topSales = await getProducts(filters)
+    const customFilters = {
+      filters: { topVentas: { $eq: true } },
+      populate: "images",
+    }
+    const topSales = await getProducts(customFilters)
     console.log("Productos más vendidos hook:", topSales)
     dispatch(setTopSales(topSales))
   }

@@ -1,13 +1,10 @@
 import apiClient from "@/api/apiClient"
 import { ApiResponse, Product } from "@/types"
 
-export const getProducts = async (filters: Record<string, any>): Promise<Product[]> => {
+export const getProducts = async (params: Record<string, any>): Promise<Product[]> => {
   try {
     const response = await apiClient.get<ApiResponse<Product[]>>("/products", {
-      params: {
-        filters,
-        populate: "images",
-      },
+      params,
     })
     console.log("Respuesta de la API:", response)
 

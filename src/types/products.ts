@@ -46,4 +46,5 @@ export interface ProductImage {
 export interface ProductsState {
   products: Product[]
   topSales: Product[]
+  newArrivals: Product[]
 }
