@@ -1,4 +1,4 @@
 import { ApiResponse } from "./apiResponse"
-import { Product, ProductsState } from "./products"
+import { NewArrivalsProps, Product, ProductImage, ProductsState, TopSalesProps } from "./products"
 
-export type { Product, ProductsState, ApiResponse }
+export type { ApiResponse, Product, ProductImage, ProductsState, NewArrivalsProps, TopSalesProps }

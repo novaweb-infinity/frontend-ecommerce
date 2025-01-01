@@ -1,21 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
-import { useSelector } from "react-redux"
-
-import { useGetNewArrivals } from "@/hooks/useGetNewArrivals"
-import { RootState } from "@/store"
+import { NewArrivalsProps } from "@/types"
 
 import ProductCard from "./ProductCard"
 
-export default function NewArrivals() {
-  const { getNewArrivals } = useGetNewArrivals()
-  const newArrivals = useSelector((state: RootState) => state.products.newArrivals)
-
-  useEffect(() => {
-    getNewArrivals()
-  }, [useGetNewArrivals])
-
+export default function NewArrivals({ newArrivals }: NewArrivalsProps) {
   return (
     <section className="container mx-auto px-4 py-8">
       <h2 className="mb-6 text-3xl font-bold">Novedades</h2>

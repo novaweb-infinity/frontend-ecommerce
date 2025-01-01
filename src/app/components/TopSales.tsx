@@ -1,21 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
-import { useSelector } from "react-redux"
-
-import { useGetTopSales } from "@/hooks/useGetTopSales"
-import { RootState } from "@/store"
+import { TopSalesProps } from "@/types"
 
 import ProductCard from "./ProductCard"
 
-export default function TopSales() {
-  const { getTopSales } = useGetTopSales()
-  const topSales = useSelector((state: RootState) => state.products.topSales)
-
-  useEffect(() => {
-    getTopSales()
-  }, [useGetTopSales])
-
+export default function TopSales({ topSales }: TopSalesProps) {
   return (
     <section className="bg-gray-100 py-8">
       <div className="container mx-auto px-4">

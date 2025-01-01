@@ -3,7 +3,7 @@
 import Autoplay from "embla-carousel-autoplay"
 import Image from "next/image"
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 
 const items = [
   { id: 1, src: "/c-1.avif", alt: "Ropa casual" },
@@ -17,7 +17,7 @@ export default function CarouselBanner() {
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.id} className="relative h-96">
-            <Image src={item.src} alt={item.alt} fill />
+            <Image src={item.src} alt={item.alt} fill priority />
           </CarouselItem>
         ))}
       </CarouselContent>

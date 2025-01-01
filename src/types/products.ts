@@ -48,3 +48,18 @@ export interface ProductsState {
   topSales: Product[]
   newArrivals: Product[]
 }
+
+// Base type for any product list
+export interface ProductListProps {
+  products: Product[]
+}
+
+// Type definitions for the new arrivals list
+export interface NewArrivalsProps {
+  newArrivals: Product[]
+}
+
+// Type definitions for the top sales list
+export interface TopSalesProps {
+  topSales: Product[]
+}
