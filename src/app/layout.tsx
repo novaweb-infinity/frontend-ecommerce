@@ -1,15 +1,10 @@
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
 
 import { AppWrapper } from "@/providers/AppWrapper"
+import { montserrat } from "@/utils/fonts"
 
 import Footer from "./components/Footer"
 import "./globals.css"
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   title: "E-Commerce",

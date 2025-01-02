@@ -8,13 +8,14 @@ import TopSales from "./components/TopSales"
 
 export default async function Home() {
   const newArrivalsParams = {
-    sort: ["createdAt:desc"],
-    pagination: { limit: 6 },
+    filters: { isFeature: { $eq: true } },
+    pagination: { limit: 4 },
     populate: "images",
   }
 
   const topSalesParams = {
     filters: { topVentas: { $eq: true } },
+    pagination: { limit: 3 },
     populate: "images",
   }
 
