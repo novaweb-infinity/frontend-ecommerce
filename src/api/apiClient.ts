@@ -8,7 +8,7 @@ const apiClient = axios.create({
   },
 })
 
-axios.interceptors.response.use(
+apiClient.interceptors.response.use(
   (response) => response, // Si la respuesta es correcta, la devuelve
   (error) => {
     if (error.response) {
