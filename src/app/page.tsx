@@ -16,7 +16,7 @@ export default async function Home() {
 
   const topSalesParams = {
     filters: { topVentas: { $eq: true } },
-    pagination: { limit: 3 },
+    pagination: { limit: 6 },
     populate: "images",
   }
 

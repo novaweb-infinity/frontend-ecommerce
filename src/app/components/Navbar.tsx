@@ -23,15 +23,15 @@ export default function Navbar() {
             Niños
           </Button>
         </div>
-        <div className="flex items-end space-x-2">
-          <Link className="rounded-lg px-4 py-2 hover:bg-gray-100" href="/cart">
+        <div className="flex items-center space-x-2">
+          <Link className="rounded-lg px-5 py-2 hover:bg-gray-100" href="/cart">
             <Heart size={28} className="dark:text-black" />
           </Link>
-          <Link className="rounded-lg px-4 py-2 hover:bg-gray-100" href="/cart">
+          <Link className="rounded-lg px-5 py-2 hover:bg-gray-100" href="/cart">
             <ShoppingCart size={28} className="dark:text-black" />
           </Link>
-          <ToggleTheme />
           <Login />
+          <ToggleTheme />
         </div>
       </div>
     </nav>

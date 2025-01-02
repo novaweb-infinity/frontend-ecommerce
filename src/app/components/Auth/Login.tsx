@@ -24,8 +24,12 @@ export default function Login() {
     <>
       <Sheet open={loginOpen} onOpenChange={setLoginOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <UserCircle className="h-6 w-6" />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg px-8 py-5 text-black hover:bg-gray-100 dark:text-black"
+          >
+            <UserCircle />
             <span className="sr-only">Iniciar sesión</span>
           </Button>
         </SheetTrigger>
