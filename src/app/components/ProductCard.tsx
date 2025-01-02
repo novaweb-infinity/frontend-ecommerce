@@ -12,7 +12,14 @@ export default function ProductCard({ product }: { product: Product }) {
     <Card className="mx-auto w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
       <CardContent className="flex flex-col items-center p-4">
         <div className="relative h-64 w-full overflow-hidden md:h-72 lg:h-80 xl:h-96">
-          <Image src={imageUrl} alt={product.productName} fill className="rounded-md" objectFit="cover" />
+          <Image
+            src={imageUrl}
+            alt={product.productName}
+            fill
+            className="rounded-md"
+            style={{ objectFit: "cover" }}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          />
         </div>
         <h3 className="mt-2 text-center text-lg font-semibold">{product.productName}</h3>
         <p className="text-center text-gray-300">{product.price.toFixed(2)} €</p>

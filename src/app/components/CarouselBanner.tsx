@@ -17,7 +17,15 @@ export default function CarouselBanner() {
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.id} className="relative h-[40rem] w-full">
-            <Image src={item.src} alt={item.alt} fill priority objectFit="cover" className="rounded-md" />
+            <Image
+              src={item.src}
+              alt={item.alt}
+              fill
+              priority
+              style={{ objectFit: "cover" }}
+              sizes="100vw"
+              className="rounded-md"
+            />
           </CarouselItem>
         ))}
       </CarouselContent>
