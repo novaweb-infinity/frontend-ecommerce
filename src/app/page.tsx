@@ -1,5 +1,6 @@
 import { getProducts } from "@/services/getProducts"
 
+// import Login from "./components/Auth/Login"
 import CarouselBanner from "./components/CarouselBanner"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
@@ -29,6 +30,7 @@ export default async function Home() {
         <CarouselBanner />
         <NewArrivals newArrivals={newArrivals} />
         <TopSales topSales={topSales} />
+        {/* <Login /> */}
       </main>
     </div>
   )
