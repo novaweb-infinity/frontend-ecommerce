@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 
 import Register from "./Register"
 
@@ -31,10 +31,10 @@ export default function Login() {
         </SheetTrigger>
         <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
           <div className="space-y-6">
-            <h2 className="text-center text-2xl font-bold text-black">INICIA LA SESSIÓ</h2>
-            <p className="text-center text-gray-600">
+            <SheetTitle className="text-center text-2xl font-bold text-black">INICIA LA SESSIÓ</SheetTitle>
+            <SheetDescription className="text-center text-gray-600">
               Introdueix la teva adreça electrònica i la contrasenya per accedir-hi
-            </p>
+            </SheetDescription>
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-black">

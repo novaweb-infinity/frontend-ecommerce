@@ -1,25 +1,19 @@
-"use client"
-
-import { useState } from "react"
-
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Sheet, SheetContent } from "@/components/ui/sheet"
-
-interface RegisterProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-}
+import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet"
+import { RegisterProps } from "@/types"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
         <div className="space-y-6">
-          <h2 className="text-center text-2xl font-bold text-black">CREA UN COMPTE</h2>
-          <p className="text-center text-gray-600">Introdueix les teves dades per registrar-t'hi</p>
+          <SheetTitle className="text-center text-2xl font-bold text-black">CREA UN COMPTE</SheetTitle>
+          <SheetDescription className="text-center text-gray-600">
+            Introdueix les teves dades per registrar-t'hi
+          </SheetDescription>
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-black">
