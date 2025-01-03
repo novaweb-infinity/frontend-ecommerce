@@ -2,13 +2,13 @@ import apiClient from "@/api/apiClient"
 import { ApiResponse, Product } from "@/types"
 import { QueryParamsProps } from "@/types/queryParamsProduct"
 
-export const getProducts = async (params: QueryParamsProps): Promise<Product[]> => {
+export const getProducts = async (params: QueryParamsProps): Promise<ApiResponse<Product[]>> => {
   try {
     const response = await apiClient.get<ApiResponse<Product[]>>("/api/products", {
       params,
     })
 
-    return response.data.data
+    return response.data
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error("Error al obtener los productos:", error.message)

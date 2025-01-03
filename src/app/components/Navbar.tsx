@@ -22,6 +22,11 @@ export default function Navbar() {
           <Button className="text-lg" variant="ghost">
             Niños
           </Button>
+          <Link href="/all-products">
+            <Button className="text-lg" variant="ghost">
+              Todos los productos
+            </Button>
+          </Link>
         </div>
         <div className="flex items-center space-x-2">
           <Link className="rounded-lg px-5 py-2 hover:bg-gray-100" href="/cart">

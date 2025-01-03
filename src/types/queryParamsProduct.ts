@@ -4,7 +4,9 @@ export interface QueryParamsProps {
     topVentas?: { $eq: boolean }
   }
   pagination?: {
-    limit: number
+    limit?: number
+    page?: number
+    pageSize?: number
   }
   populate?: string
 }

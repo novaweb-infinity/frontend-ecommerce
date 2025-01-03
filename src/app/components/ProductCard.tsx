@@ -1,30 +1,38 @@
 import Image from "next/image"
 
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Product } from "@/types"
 
 export default function ProductCard({ product }: { product: Product }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
 
   return (
-    <Card className="mx-auto w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
-      <CardContent className="flex flex-col items-center p-4">
+    <Card className="overflow-hidden">
+      <CardHeader className="p-0">
         <div className="relative h-64 w-full overflow-hidden md:h-72 lg:h-80 xl:h-96">
           <Image
             src={imageUrl}
             alt={product.productName}
             fill
-            className="rounded-md"
+            className="rounded-t-md"
             style={{ objectFit: "cover" }}
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         </div>
-        <h3 className="mt-2 text-center text-lg font-semibold">{product.productName}</h3>
-        <p className="text-center text-gray-500">{product.price.toFixed(2)} €</p>
+      </CardHeader>
+      <CardContent className="p-4">
+        <CardTitle className="mb-2 text-lg font-semibold">{product.productName}</CardTitle>
+        <p className="mb-2 text-sm text-gray-600">{product.description}</p>
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-lg font-bold">{product.price.toFixed(2)}€</span>
+          <Badge className="bg-gray-600 hover:bg-slate-500">{product.productCategory}</Badge>
+        </div>
+        <div className="text-sm text-gray-600">Tallas: S, M, L, XL</div>
       </CardContent>
-      <CardFooter className="flex justify-center">
-        <Button className="w-full bg-slate-400">Añadir al carrito</Button>
+      <CardFooter className="p-4 pt-0">
+        <Button className="w-full bg-gray-300 font-semibold text-black hover:bg-slate-500">Añadir al carrito</Button>
       </CardFooter>
     </Card>
   )
