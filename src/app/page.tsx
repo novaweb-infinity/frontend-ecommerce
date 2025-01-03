@@ -1,6 +1,6 @@
 import { getProducts } from "@/services/getProducts"
+import { QueryParamsProps } from "@/types/"
 
-// import Login from "./components/Auth/Login"
 import CarouselBanner from "./components/CarouselBanner"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
@@ -9,16 +9,24 @@ import TopSales from "./components/TopSales"
 
 export default async function Home() {
   const newArrivalsParams = {
-    filters: { isFeature: { $eq: true } },
-    pagination: { limit: 4 },
-    populate: "images",
-  }
+    filters: {
+      isFeature: { $eq: true },
+    },
+    pagination: {
+      limit: 6,
+    },
+    populate: "category",
+  } as QueryParamsProps
 
   const topSalesParams = {
-    filters: { topVentas: { $eq: true } },
-    pagination: { limit: 6 },
-    populate: "images",
-  }
+    filters: {
+      topVentas: { $eq: true },
+    },
+    pagination: {
+      limit: 3,
+    },
+    populate: "category",
+  } as QueryParamsProps
 
   const [newArrivals, topSales] = await Promise.all([getProducts(newArrivalsParams), getProducts(topSalesParams)])
 
@@ -30,7 +38,6 @@ export default async function Home() {
         <CarouselBanner />
         <NewArrivals newArrivals={newArrivals} />
         <TopSales topSales={topSales} />
-        {/* <Login /> */}
       </main>
     </div>
   )

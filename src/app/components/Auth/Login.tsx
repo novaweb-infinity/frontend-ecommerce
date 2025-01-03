@@ -1,6 +1,7 @@
 "use client"
 
 import { UserCircle } from "lucide-react"
+import { useSelectedLayoutSegments } from "next/navigation"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -12,10 +13,10 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 import Register from "./Register"
 
 export default function Login() {
-  const [loginOpen, setLoginOpen] = useState(false)
-  const [registerOpen, setRegisterOpen] = useState(false)
+  const [loginOpen, setLoginOpen] = useState<boolean>(false)
+  const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 
-  const openRegister = () => {
+  const openRegister = (): void => {
     setLoginOpen(false)
     setRegisterOpen(true)
   }
