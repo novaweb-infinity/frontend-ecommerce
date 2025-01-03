@@ -29,6 +29,7 @@ export default function Login() {
   useEffect(() => {
     if (!loginOpen) {
       form.reset()
+      form.clearErrors()
     }
   }, [loginOpen])
 

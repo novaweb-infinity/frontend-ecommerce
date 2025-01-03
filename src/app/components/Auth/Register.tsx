@@ -17,6 +17,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
   useEffect(() => {
     if (!open) {
       form.reset()
+      form.clearErrors()
     }
   }, [open])
 
