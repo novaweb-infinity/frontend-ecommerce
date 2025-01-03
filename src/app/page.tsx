@@ -15,7 +15,7 @@ export default async function Home() {
     pagination: {
       limit: 6,
     },
-    populate: "category",
+    populate: "images",
   } as QueryParamsProps
 
   const topSalesParams = {
@@ -25,7 +25,7 @@ export default async function Home() {
     pagination: {
       limit: 3,
     },
-    populate: "category",
+    populate: "images",
   } as QueryParamsProps
 
   const [newArrivals, topSales] = await Promise.all([getProducts(newArrivalsParams), getProducts(topSalesParams)])
