@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UserCircle } from "lucide-react"
-import { useState } from "react"
+import { use, useState } from "react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
@@ -32,6 +32,13 @@ export default function Login() {
       form.clearErrors()
     }
   }, [loginOpen])
+
+  useEffect(() => {
+    if (!registerOpen) {
+      form.reset()
+      form.clearErrors()
+    }
+  }, [registerOpen])
 
   const form = useForm<LoginFormProps>({
     resolver: zodResolver(loginSchema),
