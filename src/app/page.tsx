@@ -13,7 +13,7 @@ export default async function Home() {
       isFeature: { $eq: true },
     },
     pagination: {
-      limit: 6,
+      limit: 8,
     },
     populate: "images",
   } as QueryParamsProps

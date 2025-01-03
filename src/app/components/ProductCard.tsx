@@ -22,10 +22,10 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         </div>
         <h3 className="mt-2 text-center text-lg font-semibold">{product.productName}</h3>
-        <p className="text-center text-gray-300">{product.price.toFixed(2)} €</p>
+        <p className="text-center text-gray-500">{product.price.toFixed(2)} €</p>
       </CardContent>
       <CardFooter className="flex justify-center">
-        <Button className="w-full">Añadir al carrito</Button>
+        <Button className="w-full bg-slate-400">Añadir al carrito</Button>
       </CardFooter>
     </Card>
   )
