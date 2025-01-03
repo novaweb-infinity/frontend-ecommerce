@@ -1,62 +1,128 @@
+"use client"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Controller, useForm } from "react-hook-form"
+
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet"
-import { RegisterProps } from "@/types"
+import { registerSchema } from "@/schemas/registerSchema"
+import { RegisterFormProps, RegisterProps } from "@/types"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
+  const form = useForm<RegisterFormProps>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      privacyPolicy: false,
+      receiveNews: false,
+    },
+  })
+
+  const onSubmit = (data: RegisterFormProps) => {
+    console.log("Datos del formulario:", data)
+  }
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
         <div className="space-y-6">
-          <SheetTitle className="text-center text-2xl font-bold text-black">CREA UN COMPTE</SheetTitle>
+          <SheetTitle className="text-center text-2xl font-bold text-black">CREA UNA CUENTA</SheetTitle>
           <SheetDescription className="text-center text-gray-600">
-            Introdueix les teves dades per registrar-t'hi
+            Introduce tus datos para registrarte
           </SheetDescription>
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-black">
-                Adreça electrònica
-              </Label>
-              <Input id="email" type="email" placeholder="exemple@correu.com" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-black">
-                Contrasenya
-              </Label>
-              <Input id="password" type="password" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="confirm-password" className="text-black">
-                Repeteix la contrasenya
-              </Label>
-              <Input id="confirm-password" type="password" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="keep-logged" />
-                <label htmlFor="keep-logged" className="text-sm text-gray-700">
-                  Mantingues la sessió oberta
-                </label>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                name="email"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Dirección de correo electrónico</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="ejemplo@correo.com" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                name="password"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Contraseña</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="password" placeholder="••••••••" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                name="confirmPassword"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Repite la contraseña</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="password" placeholder="••••••••" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="space-y-2">
+                <FormField
+                  name="privacyPolicy"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex items-center space-x-2">
+                        <Controller
+                          name="privacyPolicy"
+                          control={form.control}
+                          render={({ field }) => (
+                            <Checkbox id="privacy-policy" checked={field.value} onCheckedChange={field.onChange} />
+                          )}
+                        />
+                        <FormLabel className="text-sm text-gray-700">
+                          He podido leer y entiendo la información sobre el uso de mis datos personales explicada en la
+                          Política de Privacidad.
+                        </FormLabel>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="flex items-center space-x-2">
+                  <Controller
+                    name="receiveNews"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Checkbox id="receive-news" checked={field.value} onCheckedChange={field.onChange} />
+                    )}
+                  />
+                  <Label htmlFor="receive-news" className="text-sm text-gray-700">
+                    Quiero recibir novedades y comunicaciones comerciales personalizadas.
+                  </Label>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="receive-news" />
-                <label htmlFor="receive-news" className="text-sm text-gray-700">
-                  Vull rebre novetats i comunicacions comercials personalitzades de Lefties a través del correu
-                  electrònic i altres mitjans
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="privacy-policy" />
-                <label htmlFor="privacy-policy" className="text-sm text-gray-700">
-                  He pogut llegir i entenc la informació sobre l'ús de les meves dades personals explicada en la
-                  Política de Privadesa
-                </label>
-              </div>
-            </div>
-            <Button className="w-full">Registra't</Button>
-          </div>
+
+              <Button type="submit" className="w-full">
+                Regístrate
+              </Button>
+            </form>
+          </Form>
         </div>
       </SheetContent>
     </Sheet>

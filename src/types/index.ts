@@ -1,5 +1,5 @@
 import { ApiResponse } from "./apiResponse"
-import { RegisterProps } from "./AuthProps"
+import { LoginFormProps, RegisterFormProps, RegisterProps } from "./AuthProps"
 import { NewArrivalsProps, Product, ProductImage, ProductsState, TopSalesProps } from "./products"
 import { QueryParamsProps } from "./queryParamsProduct"
 
@@ -12,4 +12,6 @@ export type {
   TopSalesProps,
   RegisterProps,
   QueryParamsProps,
+  LoginFormProps,
+  RegisterFormProps,
 }
