@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
@@ -13,6 +14,12 @@ import { registerSchema } from "@/schemas/registerSchema"
 import { RegisterFormProps, RegisterProps } from "@/types"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
+  useEffect(() => {
+    if (!open) {
+      form.reset()
+    }
+  }, [open])
+
   const form = useForm<RegisterFormProps>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -36,7 +43,6 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
           <SheetDescription className="text-center text-gray-600">
             Introduce tus datos para registrarte
           </SheetDescription>
-
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -52,7 +58,6 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   </FormItem>
                 )}
               />
-
               <FormField
                 name="password"
                 control={form.control}
@@ -66,7 +71,6 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   </FormItem>
                 )}
               />
-
               <FormField
                 name="confirmPassword"
                 control={form.control}
@@ -80,7 +84,6 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   </FormItem>
                 )}
               />
-
               <div className="space-y-2">
                 <FormField
                   name="privacyPolicy"
@@ -117,7 +120,6 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   </Label>
                 </div>
               </div>
-
               <Button type="submit" className="w-full">
                 Regístrate
               </Button>

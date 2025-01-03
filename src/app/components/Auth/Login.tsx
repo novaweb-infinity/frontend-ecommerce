@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UserCircle } from "lucide-react"
 import { useState } from "react"
+import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
@@ -24,6 +25,12 @@ export default function Login() {
     setLoginOpen(false)
     setRegisterOpen(true)
   }
+
+  useEffect(() => {
+    if (!loginOpen) {
+      form.reset()
+    }
+  }, [loginOpen])
 
   const form = useForm<LoginFormProps>({
     resolver: zodResolver(loginSchema),
@@ -57,7 +64,6 @@ export default function Login() {
             <SheetDescription className="text-center text-gray-600">
               Introduce tu dirección de correo electrónico y tu contraseña para acceder.
             </SheetDescription>
-
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
@@ -73,7 +79,6 @@ export default function Login() {
                     </FormItem>
                   )}
                 />
-
                 <FormField
                   name="password"
                   control={form.control}
@@ -91,7 +96,6 @@ export default function Login() {
                     </FormItem>
                   )}
                 />
-
                 <div className="flex items-center space-x-2">
                   <Controller
                     name="keepLogged"
@@ -104,11 +108,9 @@ export default function Login() {
                     Mantén la sesión iniciada
                   </Label>
                 </div>
-
                 <Button type="submit" className="w-full">
                   Inicia sesión
                 </Button>
-
                 <div className="space-y-2 text-center">
                   <p className="text-sm text-gray-600">¿No tienes cuenta?</p>
                   <Button variant="outline" className="w-full" onClick={openRegister}>
