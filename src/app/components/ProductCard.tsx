@@ -5,8 +5,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Product } from "@/types"
 
 export default function ProductCard({ product }: { product: Product }) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const imageUrl = product.images?.length > 0 ? `${baseUrl}${product.images[0].url}` : "/c-1.avif"
+  const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
 
   return (
     <Card className="mx-auto w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
