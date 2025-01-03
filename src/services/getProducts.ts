@@ -1,7 +1,8 @@
 import apiClient from "@/api/apiClient"
 import { ApiResponse, Product } from "@/types"
+import { QueryParamsProps } from "@/types/queryParamsProduct"
 
-export const getProducts = async (params: Record<string, any>): Promise<Product[]> => {
+export const getProducts = async (params: QueryParamsProps): Promise<Product[]> => {
   try {
     const response = await apiClient.get<ApiResponse<Product[]>>("/api/products", {
       params,
