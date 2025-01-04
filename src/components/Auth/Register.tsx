@@ -1,7 +1,6 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { on } from "events"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
@@ -15,13 +14,6 @@ import { RegisterFormProps, RegisterProps } from "@/types"
 import { registerSchema } from "@/validators/registerSchema"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
-  useEffect(() => {
-    if (!open) {
-      form.reset()
-      form.clearErrors()
-    }
-  }, [open])
-
   const form = useForm<RegisterFormProps>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -32,6 +24,13 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
       receiveNews: false,
     },
   })
+
+  useEffect(() => {
+    if (!open) {
+      form.reset()
+      form.clearErrors()
+    }
+  }, [open, form])
 
   const onSubmit = (data: RegisterFormProps) => {
     console.log("Datos del formulario:", data)
@@ -93,13 +92,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   render={({ field }) => (
                     <FormItem>
                       <div className="flex items-center space-x-2">
-                        <Controller
-                          name="privacyPolicy"
-                          control={form.control}
-                          render={({ field }) => (
-                            <Checkbox id="privacy-policy" checked={field.value} onCheckedChange={field.onChange} />
-                          )}
-                        />
+                        <Checkbox id="privacy-policy" checked={field.value} onCheckedChange={field.onChange} />
                         <FormLabel className="text-sm text-gray-700">
                           He podido leer y entiendo la información sobre el uso de mis datos personales explicada en la
                           Política de Privacidad.

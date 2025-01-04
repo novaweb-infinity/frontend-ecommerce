@@ -1,9 +1,9 @@
 "use client"
 
-import { Heart, ShoppingCart, User } from "lucide-react"
+import { Heart, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 
-import Login from "../../Home/Auth/Login"
+import Login from "../../Auth/Login"
 import NavLinks from "./NavLinks"
 import ToggleTheme from "./ToggleTheme"
 

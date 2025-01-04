@@ -1,15 +1,15 @@
 import { Suspense } from "react"
 
-import ProductList from "./ProductList"
-import { ProductListSkeleton } from "./ProductSkeleton"
+import ProductList from "@/components/Products/ProductList"
+import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 
-interface SearchParams {
+interface ProductsProps {
   searchParams: {
     page?: string
   }
 }
 
-export default function Products({ searchParams }: SearchParams) {
+export default function Products({ searchParams }: ProductsProps) {
   const currentPage = Number(searchParams.page) || 1
   const pageSize = 12
 

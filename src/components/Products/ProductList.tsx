@@ -1,7 +1,7 @@
 import { Pagination } from "@/lib/pagination"
 
-import AllProducts from "./allProducts"
-import PaginationControls from "./paginationControls"
+import AllProducts from "./AllProducts"
+import PaginationControls from "./PaginationController"
 
 export default async function ProductList({ currentPage, pageSize }: { currentPage: number; pageSize: number }) {
   const { data: products, meta } = await Pagination(currentPage, pageSize)

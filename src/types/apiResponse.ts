@@ -1,6 +1,6 @@
 import { Product } from "./products"
 
-export interface ApiResponse<T> {
+export interface ApiResponse {
   data: Product[]
   meta: {
     pagination: {

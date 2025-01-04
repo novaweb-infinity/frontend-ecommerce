@@ -1,7 +1,7 @@
 import { z } from "zod"
 
-import { loginSchema } from "@/schemas/loginSchema"
-import { registerSchema } from "@/schemas/registerSchema"
+import { loginSchema } from "@/validators/loginSchema"
+import { registerSchema } from "@/validators/registerSchema"
 
 export interface RegisterProps {
   open: boolean
