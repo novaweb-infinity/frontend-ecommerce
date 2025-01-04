@@ -1,15 +1,16 @@
+import { GetServerSideProps } from "next"
 import { Suspense } from "react"
 
-import ProductList from "./PoductList"
+import ProductList from "./ProductList"
 import { ProductListSkeleton } from "./ProductSkeleton"
 
-interface SearchParams {
+interface ProductsProps {
   searchParams: {
     page?: string
   }
 }
 
-export default function Products({ searchParams }: SearchParams) {
+export default function Products({ searchParams }: ProductsProps) {
   const currentPage = Number(searchParams.page) || 1
   const pageSize = 12
 
@@ -21,4 +22,17 @@ export default function Products({ searchParams }: SearchParams) {
       </Suspense>
     </section>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context
+  const searchParams = {
+    page: query.page as string,
+  }
+
+  return {
+    props: {
+      searchParams,
+    },
+  }
 }
