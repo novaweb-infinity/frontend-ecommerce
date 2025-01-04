@@ -4,9 +4,9 @@ import Head from "next/head"
 import { AppWrapper } from "@/providers/AppWrapper"
 import { montserrat } from "@/utils/fonts"
 
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
 import "./globals.css"
+import Footer from "./Home/Footer"
+import Navbar from "./Home/Navbar"
 
 export const metadata: Metadata = {
   title: "E-Commerce",
