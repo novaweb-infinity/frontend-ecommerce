@@ -11,11 +11,9 @@ export const getProducts = async (params: QueryParamsProps): Promise<ApiResponse
     return response.data
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error("Error al obtener los productos:", error.message)
+      throw new Error(error.message)
     } else {
-      console.error("Error desconocido al obtener los productos")
+      throw new Error("Error al obtener los productos. Inténtalo más tarde.")
     }
-
-    throw new Error("Error al obtener los productos. Inténtalo más tarde.")
   }
 }

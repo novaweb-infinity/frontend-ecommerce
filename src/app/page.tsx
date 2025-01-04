@@ -7,7 +7,7 @@ import NewArrivals from "./components/NewArrivals"
 import TopSales from "./components/TopSales"
 
 export default async function Home() {
-  const newArrivalsParams = {
+  const newArrivalsParams: QueryParamsProps = {
     filters: {
       isFeature: { $eq: true },
     },
@@ -15,9 +15,9 @@ export default async function Home() {
       limit: 8,
     },
     populate: "images",
-  } as QueryParamsProps
+  }
 
-  const topSalesParams = {
+  const topSalesParams: QueryParamsProps = {
     filters: {
       topVentas: { $eq: true },
     },
@@ -25,11 +25,14 @@ export default async function Home() {
       limit: 3,
     },
     populate: "images",
-  } as QueryParamsProps
+  }
 
-  const [newArrivalsResponse, topSalesResponse] = await Promise.all([getProducts(newArrivalsParams), getProducts(topSalesParams)])
-  const newArrivals = newArrivalsResponse.data;
-  const topSales = topSalesResponse.data;
+  const [newArrivalsResponse, topSalesResponse] = await Promise.all([
+    getProducts(newArrivalsParams),
+    getProducts(topSalesParams),
+  ])
+  const newArrivals = newArrivalsResponse.data
+  const topSales = topSalesResponse.data
 
   return (
     <div className="flex min-h-screen flex-col">
