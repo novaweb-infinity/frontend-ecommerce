@@ -1,4 +1,4 @@
-import { newArrivalsParams, topSalesParams } from "@/api/queryParams"
+import { newArrivalsParams, topSalesParams } from "@/api/queryParamsProduct"
 import { getProducts } from "@/api/services/getProducts"
 import CarouselBanner from "@/components/Home/CarouselBanner"
 import Hero from "@/components/Home/Hero"

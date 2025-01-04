@@ -1,18 +1,25 @@
 import { ApiResponseProps } from "./apiResponseProps"
 import { LoginFormProps, RegisterFormProps, RegisterProps } from "./authProps"
-import { NewArrivalsProps, Product, ProductImage, ProductListProps, ProductsState, TopSalesProps } from "./products"
-import { QueryParamsProps } from "./queryParamsProduct"
+import {
+  NewArrivalsProps,
+  ProductImageProps,
+  ProductListProps,
+  ProductProps,
+  ProductsStateProps,
+  TopSalesProps,
+} from "./productProps"
+import { QueryParamsProductProps } from "./queryParamsProductProps"
 
 export type {
   ApiResponseProps,
-  Product,
+  ProductProps,
   ProductListProps,
-  ProductImage,
-  ProductsState,
+  ProductImageProps,
+  ProductsStateProps,
   NewArrivalsProps,
   TopSalesProps,
   RegisterProps,
-  QueryParamsProps,
+  QueryParamsProductProps,
   LoginFormProps,
   RegisterFormProps,
 }

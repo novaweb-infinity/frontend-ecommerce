@@ -1,5 +1,5 @@
 // Type definitions for the products
-export interface Product {
+export interface ProductProps {
   id: number
   documentId: string
   productName: string
@@ -16,11 +16,11 @@ export interface Product {
   isFeature: boolean
   productCategory: null | string
   topVentas: boolean
-  images: ProductImage[]
+  images: ProductImageProps[]
 }
 
 // Type definitions for the product images
-export interface ProductImage {
+export interface ProductImageProps {
   id: number
   documentId: string
   name: string
@@ -43,23 +43,23 @@ export interface ProductImage {
 }
 
 // Type definitions for the products state
-export interface ProductsState {
-  products: Product[]
-  topSales: Product[]
-  newArrivals: Product[]
+export interface ProductsStateProps {
+  products: ProductProps[]
+  topSales: ProductProps[]
+  newArrivals: ProductProps[]
 }
 
 // Base type for any product list
 export interface ProductListProps {
-  products: Product[]
+  products: ProductProps[]
 }
 
 // Type definitions for the new arrivals list
 export interface NewArrivalsProps {
-  newArrivals: Product[]
+  newArrivals: ProductProps[]
 }
 
 // Type definitions for the top sales list
 export interface TopSalesProps {
-  topSales: Product[]
+  topSales: ProductProps[]
 }
