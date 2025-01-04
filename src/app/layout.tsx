@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Head from "next/head"
 
 import { AppWrapper } from "@/providers/AppWrapper"
 import { montserrat } from "@/utils/fonts"
@@ -21,6 +22,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${montserrat.variable} antialiased`}>
         <AppWrapper>
+          <Head>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
           <Navbar />
           {children}
           <Footer />

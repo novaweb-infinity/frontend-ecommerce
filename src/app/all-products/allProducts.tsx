@@ -1,6 +1,6 @@
 import { Product } from "@/types"
 
-import ProductCard from "../components/ProductCard"
+import ProductCard from "../components/Home/ProductCard"
 
 export default async function AllProducts({ products }: { products: Product[] }) {
   return (
