@@ -3,7 +3,7 @@ import { Suspense } from "react"
 import ProductList from "./PoductList"
 import { ProductListSkeleton } from "./ProductSkeleton"
 
-export default function Products({ searchParams }: { searchParams: { page?: string } }) {
+export default function Products({ searchParams }: { searchParams: { page?: string | undefined } }) {
   const currentPage = Number(searchParams.page) || 1
   const pageSize = 12
 
