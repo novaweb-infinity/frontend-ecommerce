@@ -7,7 +7,7 @@ export default function NavLinks() {
   const links = [
     { name: "Hombre", href: "/men" },
     { name: "Mujer", href: "/woman" },
-    { name: "Niños", href: "/kids" },
+    { name: "Niños", href: "/kid" },
     { name: "Todos los productos", href: "/all-products" },
   ]
 
