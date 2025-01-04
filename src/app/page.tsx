@@ -1,31 +1,11 @@
+import { newArrivalsParams, topSalesParams } from "@/api/queryParams"
 import { getProducts } from "@/api/services/getProducts"
 import CarouselBanner from "@/components/Home/CarouselBanner"
 import Hero from "@/components/Home/Hero"
 import NewArrivals from "@/components/Home/NewArrivals"
 import TopSales from "@/components/Home/TopSales"
-import { QueryParamsProps } from "@/types/"
 
 export default async function Home() {
-  const newArrivalsParams: QueryParamsProps = {
-    filters: {
-      isFeature: { $eq: true },
-    },
-    pagination: {
-      limit: 8,
-    },
-    populate: "images",
-  }
-
-  const topSalesParams: QueryParamsProps = {
-    filters: {
-      topVentas: { $eq: true },
-    },
-    pagination: {
-      limit: 3,
-    },
-    populate: "images",
-  }
-
   const [newArrivalsResponse, topSalesResponse] = await Promise.all([
     getProducts(newArrivalsParams),
     getProducts(topSalesParams),

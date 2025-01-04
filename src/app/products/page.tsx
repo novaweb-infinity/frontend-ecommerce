@@ -1,3 +1,4 @@
+import { ParsedUrlQuery } from "querystring"
 import { Suspense } from "react"
 
 import ProductList from "@/components/Products/ProductList"
@@ -11,7 +12,7 @@ interface PageProps {
 
 export default async function Products({ searchParams }: PageProps) {
   const params = await searchParams
-  console.log(params)
+
   const currentPage = Number(params.page) || 1
   const pageSize = 12
 
