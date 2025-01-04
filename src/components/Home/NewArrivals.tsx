@@ -2,7 +2,7 @@
 
 import { NewArrivalsProps } from "@/types"
 
-import ProductCard from "../components/ProductCard"
+import ProductCard from "@/components/Products/ProductCard"
 
 export default function NewArrivals({ newArrivals }: NewArrivalsProps) {
   return (

@@ -5,10 +5,10 @@ export default function NavLinks() {
   const pathname = usePathname()
 
   const links = [
-    { name: "Hombre", href: "/men" },
-    { name: "Mujer", href: "/woman" },
-    { name: "Niños", href: "/kid" },
-    { name: "Todos los productos", href: "/all-products" },
+    { name: "Hombre", href: "/products/men" },
+    { name: "Mujer", href: "/products/woman" },
+    { name: "Niños", href: "/products/kid" },
+    { name: "Todos los productos", href: "/products" },
   ]
 
   return (

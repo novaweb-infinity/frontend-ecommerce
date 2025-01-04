@@ -1,8 +1,7 @@
 "use client"
 
+import ProductCard from "@/components/Products/ProductCard"
 import { TopSalesProps } from "@/types"
-
-import ProductCard from "../components/ProductCard"
 
 export default function TopSales({ topSales }: TopSalesProps) {
   return (

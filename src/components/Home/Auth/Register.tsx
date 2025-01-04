@@ -11,8 +11,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet"
-import { registerSchema } from "@/schemas/registerSchema"
 import { RegisterFormProps, RegisterProps } from "@/types"
+import { registerSchema } from "@/validators/registerSchema"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
   useEffect(() => {

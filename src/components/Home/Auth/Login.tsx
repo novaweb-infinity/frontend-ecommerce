@@ -12,8 +12,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { loginSchema } from "@/schemas/loginSchema"
 import { LoginFormProps } from "@/types"
+import { loginSchema } from "@/validators/loginSchema"
 
 import Register from "./Register"
 

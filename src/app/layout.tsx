@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 import Head from "next/head"
 
+import Footer from "@/components/Home/Footer"
+import Navbar from "@/components/Home/Navbar"
 import { AppWrapper } from "@/providers/AppWrapper"
 import { montserrat } from "@/utils/fonts"
 
 import "./globals.css"
-import Footer from "./Home/Footer"
-import Navbar from "./Home/Navbar"
 
 export const metadata: Metadata = {
   title: "E-Commerce",
