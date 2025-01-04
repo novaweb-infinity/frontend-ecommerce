@@ -1,4 +1,3 @@
-import { ParsedUrlQuery } from "querystring"
 import { Suspense } from "react"
 
 import ProductList from "@/components/Products/ProductList"

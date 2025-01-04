@@ -1,7 +1,7 @@
-import { Product } from "./productProps"
+import { ProductProps } from "./productProps"
 
 export interface ApiResponseProps {
-  data: Product[]
+  data: ProductProps[]
   meta: {
     pagination: {
       page: number

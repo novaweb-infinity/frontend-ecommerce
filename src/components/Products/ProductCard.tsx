@@ -3,9 +3,9 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Product } from "@/types"
+import { ProductProps } from "@/types/productProps"
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product }: { product: ProductProps }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
 
   return (

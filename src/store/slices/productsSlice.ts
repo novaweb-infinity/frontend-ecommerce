@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-import { Product, ProductsState } from "@/types"
+import { ProductProps, ProductsStateProps } from "@/types/productProps"
 
-const initialState: ProductsState = {
+const initialState: ProductsStateProps = {
   products: [],
   topSales: [],
   newArrivals: [],
@@ -12,13 +12,13 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<Product[]>) => {
+    setProducts: (state, action: PayloadAction<ProductProps[]>) => {
       state.products = action.payload
     },
-    setTopSales: (state, action: PayloadAction<Product[]>) => {
+    setTopSales: (state, action: PayloadAction<ProductProps[]>) => {
       state.topSales = action.payload
     },
-    setNewArrivals: (state, action: PayloadAction<Product[]>) => {
+    setNewArrivals: (state, action: PayloadAction<ProductProps[]>) => {
       state.newArrivals = action.payload
     },
   },
