@@ -2,9 +2,6 @@
 
 import { Heart, ShoppingCart, User } from "lucide-react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-
-import { Button } from "@/components/ui/button"
 
 import Login from "../Auth/Login"
 import NavLinks from "./NavLinks"
