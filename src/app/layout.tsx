@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Head from "next/head"
 
-import Footer from "@/components/Home/Footer"
-import Navbar from "@/components/Home/Navbar"
+import Footer from "@/components/Layout/Footer"
+import Navbar from "@/components/Layout/Navbar"
 import { AppWrapper } from "@/providers/AppWrapper"
 import { montserrat } from "@/utils/fonts"
 
