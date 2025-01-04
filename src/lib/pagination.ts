@@ -1,4 +1,4 @@
-import { getProducts } from "@/services/getProducts"
+import { getProducts } from "@/api/services/getProducts"
 import { QueryParamsProps } from "@/types/"
 
 export async function Pagination(page: number, pageSize: number) {

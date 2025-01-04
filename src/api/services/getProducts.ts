@@ -1,4 +1,4 @@
-import apiClient from "@/lib/api/apiClient"
+import apiClient from "@/api/apiClient"
 import { ApiResponse, Product } from "@/types"
 import { QueryParamsProps } from "@/types/queryParamsProduct"
 

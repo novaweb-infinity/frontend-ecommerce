@@ -1,8 +1,8 @@
+import { getProducts } from "@/api/services/getProducts"
 import CarouselBanner from "@/components/Home/CarouselBanner"
 import Hero from "@/components/Home/Hero"
 import NewArrivals from "@/components/Home/NewArrivals"
 import TopSales from "@/components/Home/TopSales"
-import { getProducts } from "@/services/getProducts"
 import { QueryParamsProps } from "@/types/"
 
 export default async function Home() {
