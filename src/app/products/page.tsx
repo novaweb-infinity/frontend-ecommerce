@@ -3,14 +3,16 @@ import { Suspense } from "react"
 import ProductList from "@/components/Products/ProductList"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 
-interface ProductsProps {
-  searchParams: {
-    page?: string
-  }
+interface PageProps {
+  searchParams: Promise<{
+    page?: string | string[]
+  }>
 }
 
-export default function Products({ searchParams }: ProductsProps) {
-  const currentPage = Number(searchParams.page) || 1
+export default async function Products({ searchParams }: PageProps) {
+  const params = await searchParams
+  console.log(params)
+  const currentPage = Number(params.page) || 1
   const pageSize = 12
 
   return (
