@@ -2,7 +2,7 @@
 
 import { TopSalesProps } from "@/types"
 
-import ProductCard from "./ProductCard"
+import ProductCard from "../components/ProductCard"
 
 export default function TopSales({ topSales }: TopSalesProps) {
   return (

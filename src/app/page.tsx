@@ -1,10 +1,10 @@
 import { getProducts } from "@/services/getProducts"
 import { QueryParamsProps } from "@/types/"
 
-import CarouselBanner from "./components/Home/CarouselBanner"
-import Hero from "./components/Home/Hero"
-import NewArrivals from "./components/Home/NewArrivals"
-import TopSales from "./components/Home/TopSales"
+import CarouselBanner from "./Home/CarouselBanner"
+import Hero from "./Home/Hero"
+import NewArrivals from "./Home/NewArrivals"
+import TopSales from "./Home/TopSales"
 
 export default async function Home() {
   const newArrivalsParams: QueryParamsProps = {
