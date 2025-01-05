@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { JSX } from "react"
 
 import { Button } from "@/components/ui/button"
 
@@ -12,7 +13,7 @@ interface PaginationControlsProps {
   pageSize: number
 }
 
-export default function PaginationControls({ currentPage, totalPages, totalItems, pageSize }: PaginationControlsProps) {
+export default function PaginationControls({ currentPage, totalPages, totalItems, pageSize }: PaginationControlsProps): JSX.Element {
   const pathname = usePathname()
 
   const startIndex = (currentPage - 1) * pageSize + 1

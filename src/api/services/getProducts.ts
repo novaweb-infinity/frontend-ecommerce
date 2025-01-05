@@ -14,10 +14,7 @@ export const getProducts = async (params: QueryParamsProductProps): Promise<ApiR
   } catch (error: unknown) {
     if (isAxiosError(error)) {
       if (error.response) {
-        console.log(error.response.data)
-        throw new Error(
-          `Error del servidor (${error.response.status}): ${error.response.data?.message || "Error desconocido"}`
-        )
+        throw new Error(`Error del servidor (${error.response.status}): ${error.response.data?.message || "Error desconocido"}`)
       } else if (error.request) {
         throw new Error("No se recibió respuesta del servidor. Revisa tu conexión e inténtalo más tarde.")
       }
