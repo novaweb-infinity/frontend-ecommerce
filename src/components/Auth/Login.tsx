@@ -57,18 +57,14 @@ export default function Login() {
     <>
       <Sheet open={loginOpen} onOpenChange={setLoginOpen}>
         <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-lg px-8 py-5 text-black hover:bg-gray-100 dark:text-black"
-          >
+          <Button variant="ghost" size="icon" className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:text-black">
             <UserCircle />
             <span className="sr-only">Iniciar sesión</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
           <div className="space-y-6">
-            <SheetTitle className="text-center text-2xl font-bold text-black">INICIA SESIÓN</SheetTitle>
+            <SheetTitle className="mt-8 text-center text-2xl font-bold text-black">INICIA SESIÓN</SheetTitle>
             <SheetDescription className="text-center text-gray-600">
               Introduce tu dirección de correo electrónico y tu contraseña para acceder.
             </SheetDescription>
@@ -97,8 +93,8 @@ export default function Login() {
                         <Input {...field} type="password" placeholder="••••••••" />
                       </FormControl>
                       <p className="text-xs text-gray-500">
-                        La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una minúscula y un
-                        número. Por favor, no repitas el mismo carácter más de tres veces.
+                        La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una minúscula y un número. Por favor, no repitas el
+                        mismo carácter más de tres veces.
                       </p>
                       <FormMessage />
                     </FormItem>
@@ -108,9 +104,7 @@ export default function Login() {
                   <Controller
                     name="keepLogged"
                     control={form.control}
-                    render={({ field }) => (
-                      <Checkbox id="keep-logged" checked={field.value} onCheckedChange={field.onChange} />
-                    )}
+                    render={({ field }) => <Checkbox id="keep-logged" checked={field.value} onCheckedChange={field.onChange} />}
                   />
                   <Label htmlFor="keep-logged" className="text-sm text-gray-700">
                     Mantén la sesión iniciada
