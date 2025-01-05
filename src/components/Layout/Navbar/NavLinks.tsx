@@ -13,12 +13,12 @@ export default function NavLinks() {
 
   return (
     <>
-      <div className="flex gap-8">
+      <div className="flex gap-4">
         {links.map((link) => (
           <Link
             key={link.name}
             href={link.href}
-            className={`flex space-x-4 rounded-lg p-2 font-bold text-black hover:bg-gray-200 ${pathname === link.href ? "bg-gray-300" : ""}`}
+            className={`flex rounded-lg px-4 py-2 font-bold text-black hover:bg-gray-200 ${pathname === link.href ? "bg-gray-300" : ""}`}
           >
             <p>{link.name}</p>
           </Link>
