@@ -1,15 +1,15 @@
 import { Pagination } from "@/lib/pagination"
 
-import AllProducts from "./AllProducts"
 import PaginationControls from "./PaginationController"
+import ProductsGrid from "./ProductsGrid"
 
-export default async function ProductList({ currentPage, pageSize }: { currentPage: number; pageSize: number }) {
+export default async function AllProductsList({ currentPage, pageSize }: { currentPage: number; pageSize: number }) {
   const { data: products, meta } = await Pagination(currentPage, pageSize)
   const totalPages = Math.ceil(meta.pagination.total / pageSize)
 
   return (
     <>
-      <AllProducts products={products} />
+      <ProductsGrid products={products} />
       <PaginationControls
         currentPage={currentPage}
         totalPages={totalPages}

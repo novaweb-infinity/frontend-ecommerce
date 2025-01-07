@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 
-import ProductList from "@/components/Products/ProductList"
+import AllProductsList from "@/components/Products/AllProductsList"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 
 interface PageProps {
@@ -19,7 +19,7 @@ export default async function Products({ searchParams }: PageProps) {
     <section className="container mx-auto px-4 py-8">
       <h2 className="mb-6 text-3xl font-bold">Todos los productos</h2>
       <Suspense fallback={<ProductListSkeleton />}>
-        <ProductList currentPage={currentPage} pageSize={pageSize} />
+        <AllProductsList currentPage={currentPage} pageSize={pageSize} />
       </Suspense>
     </section>
   )

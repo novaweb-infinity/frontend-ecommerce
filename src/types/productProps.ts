@@ -47,6 +47,8 @@ export interface ProductsStateProps {
   products: ProductProps[]
   topSales: ProductProps[]
   newArrivals: ProductProps[]
+
+  meta: any //TODO define the type for the meta object
 }
 
 // Base type for any product list

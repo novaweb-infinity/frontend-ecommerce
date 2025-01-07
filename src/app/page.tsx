@@ -14,7 +14,10 @@ export default async function Home(): Promise<JSX.Element> {
   let errorMessage: string = ""
 
   try {
-    const [newArrivalsResponse, topSalesResponse] = await Promise.all([getProducts(newArrivalsParams), getProducts(topSalesParams)])
+    const [newArrivalsResponse, topSalesResponse] = await Promise.all([
+      getProducts(newArrivalsParams),
+      getProducts(topSalesParams),
+    ])
 
     newArrivals = newArrivalsResponse.data
     topSales = topSalesResponse.data

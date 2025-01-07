@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 
-import productsSlice from "@/store/slices/productsSlice"
+import productReducer from "@/store/slices/productsSlice"
 
 // Crear la tienda global
 export const store = configureStore({
   reducer: {
     // Combina reducers (puedes agregar más aquí)
-    products: productsSlice,
+    products: productReducer,
   },
 })
 
