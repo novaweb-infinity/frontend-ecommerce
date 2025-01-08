@@ -1,6 +1,6 @@
 "use client"
 
-import { Heart, ShoppingCart } from "lucide-react"
+import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -39,8 +39,19 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems, products }: Shop
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="px-8 py-6">
-          {icon === "cart" ? <ShoppingCart className="h-6 w-6" /> : <Heart className="h-6 w-6" />}
+        <Button variant="ghost" size="icon" className="relative px-8 py-6">
+          {icon === "cart" ? (
+            <>
+              {cartItems === 0 ? <ShoppingCart className="h-6 w-6" /> : <BaggageClaim className="h-6 w-6" />}
+              {cartItems > 0 && (
+                <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
+                  {cartItems}
+                </span>
+              )}
+            </>
+          ) : (
+            <Heart className="h-6 w-6" />
+          )}
           <span className="sr-only">{icon === "cart" ? "Cesta" : "Favoritos"}</span>
         </Button>
       </SheetTrigger>
@@ -48,16 +59,22 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems, products }: Shop
         <div className="space-y-6">
           <SheetHeader className="flex">
             <div className="mt-8">
-              <SheetTitle className="sr-only">panel lateral derecho de {activeTab === "cart" ? "la cesta" : "favoritos"}</SheetTitle>
+              <SheetTitle className="sr-only">
+                panel lateral derecho de {activeTab === "cart" ? "la cesta" : "favoritos"}
+              </SheetTitle>
               <SheetDescription className="sr-only">
-                panel lateral donde aparecen todos los elementos guardados en {activeTab === "cart" ? "la cesta" : "favoritos"}
+                panel lateral donde aparecen todos los elementos guardados en{" "}
+                {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetDescription>
             </div>
             <div className="flex justify-between">
               <Button variant={activeTab === "cart" ? "default" : "outline"} onClick={() => setActiveTab("cart")}>
                 Cesta ({cartItems})
               </Button>
-              <Button variant={activeTab === "favorites" ? "default" : "outline"} onClick={() => setActiveTab("favorites")}>
+              <Button
+                variant={activeTab === "favorites" ? "default" : "outline"}
+                onClick={() => setActiveTab("favorites")}
+              >
                 Favoritos ({favoriteItems})
               </Button>
             </div>

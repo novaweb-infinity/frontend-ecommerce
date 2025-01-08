@@ -1,14 +1,15 @@
 "use client"
 
 import Link from "next/link"
+import { useSelector } from "react-redux"
 
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
+import { RootState } from "@/store"
 
 import Login from "../../Auth/Login"
 import NavLinks from "./NavLinks"
 import ToggleTheme from "./ToggleTheme"
 
-const cartItems = 2
 const favoriteItems = 2
 
 const products = [
@@ -33,6 +34,9 @@ const products = [
 ]
 
 export default function Navbar() {
+  const cartItems = useSelector((state: RootState) => state.cart.items)
+  console.log(cartItems.length)
+
   return (
     <nav className="z-10 bg-white shadow-md">
       <div className="flex items-center justify-between px-4 py-4">
@@ -41,8 +45,8 @@ export default function Navbar() {
           <h1>tutienda.com</h1>
         </Link>
         <div className="flex items-center justify-between gap-2">
-          <ShoppingSheet icon="heart" cartItems={cartItems} favoriteItems={favoriteItems} products={products} />
-          <ShoppingSheet icon="cart" cartItems={cartItems} favoriteItems={favoriteItems} products={products} />
+          <ShoppingSheet icon="cart" cartItems={cartItems.length} favoriteItems={favoriteItems} products={products} />
+          <ShoppingSheet icon="heart" cartItems={2} favoriteItems={favoriteItems} products={products} />
           <Login />
           <ToggleTheme />
         </div>
