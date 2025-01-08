@@ -12,30 +12,8 @@ import ToggleTheme from "./ToggleTheme"
 
 const favoriteItems = 2
 
-const products = [
-  {
-    id: 1,
-    name: "Camiseta básica",
-    reference: "REF123456",
-    color: "bg-white",
-    price: "9,99 €",
-    image:
-      "https://images.unsplash.com/photo-1699503198568-edd9714f3d67?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    id: 2,
-    name: "Pantalón vaquero",
-    reference: "REF789012",
-    color: "bg-blue-400",
-    price: "29,99 €",
-    image:
-      "https://images.unsplash.com/photo-1533825828907-94649041aa67?q=80&w=1804&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-]
-
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
-  console.log(cartItems.length)
 
   return (
     <nav className="z-10 bg-white shadow-md">
@@ -45,8 +23,8 @@ export default function Navbar() {
           <h1>tutienda.com</h1>
         </Link>
         <div className="flex items-center justify-between gap-2">
-          <ShoppingSheet icon="cart" cartItems={cartItems.length} favoriteItems={favoriteItems} products={products} />
-          <ShoppingSheet icon="heart" cartItems={2} favoriteItems={favoriteItems} products={products} />
+          <ShoppingSheet icon="cart" cartItems={cartItems} favoriteItems={favoriteItems} />
+          <ShoppingSheet icon="heart" cartItems={cartItems} favoriteItems={favoriteItems} />
           <Login />
           <ToggleTheme />
         </div>

@@ -2,33 +2,29 @@
 
 import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { removeItem } from "@/store/slices/cartSlice"
+import { ProductProps } from "@/types"
 
 import { ProductCardSheet } from "./ProductCardSheet"
 
 interface ShoppingSheetProps {
   icon: "cart" | "heart"
-  cartItems: number
+  cartItems: ProductProps[]
   favoriteItems: number
-  products: Array<{
-    id: number
-    name: string
-    reference: string
-    color: string
-    price: string
-    image: string
-  }>
 }
 
-export function ShoppingSheet({ icon, cartItems, favoriteItems, products }: ShoppingSheetProps) {
+export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetProps) {
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<"cart" | "favorites">(icon === "cart" ? "cart" : "favorites")
 
+  const dispatch = useDispatch()
+
   const handleRemove = (productId: number) => {
-    console.log(`Removing product ${productId}`)
-    // Aquí iría la lógica para eliminar el producto
+    dispatch(removeItem(productId))
   }
 
   const handleAddToCartOrFavorite = (productId: number) => {
@@ -42,10 +38,10 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems, products }: Shop
         <Button variant="ghost" size="icon" className="relative px-8 py-6">
           {icon === "cart" ? (
             <>
-              {cartItems === 0 ? <ShoppingCart className="h-6 w-6" /> : <BaggageClaim className="h-6 w-6" />}
-              {cartItems > 0 && (
+              {cartItems.length === 0 ? <ShoppingCart className="h-6 w-6" /> : <BaggageClaim className="h-6 w-6" />}
+              {cartItems.length > 0 && (
                 <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
-                  {cartItems}
+                  {cartItems.length}
                 </span>
               )}
             </>
@@ -69,7 +65,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems, products }: Shop
             </div>
             <div className="flex justify-between">
               <Button variant={activeTab === "cart" ? "default" : "outline"} onClick={() => setActiveTab("cart")}>
-                Cesta ({cartItems})
+                Cesta ({cartItems.length})
               </Button>
               <Button
                 variant={activeTab === "favorites" ? "default" : "outline"}
@@ -80,7 +76,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems, products }: Shop
             </div>
           </SheetHeader>
           <div className="space-y-4">
-            {products.map((product) => (
+            {cartItems.map((product) => (
               <ProductCardSheet
                 key={product.id}
                 product={product}

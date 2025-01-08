@@ -1,6 +1,7 @@
+"use client"
+
 import Image from "next/image"
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -13,8 +14,6 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
   const dispatch = useDispatch()
 
-  const itemsCart = useSelector((state: RootState) => state.cart.items)
-  console.log(itemsCart)
   const handleAddToCart = () => {
     dispatch(addItem(product))
   }
