@@ -19,8 +19,8 @@ export default async function Home(): Promise<JSX.Element> {
       getProducts(topSalesParams),
     ])
 
-    newArrivals = newArrivalsResponse.data
-    topSales = topSalesResponse.data
+    newArrivals = newArrivalsResponse.data ?? []
+    topSales = topSalesResponse.data ?? []
   } catch (error: unknown) {
     errorMessage = error instanceof Error ? error.message : "Ocurrió un error inesperado."
   }
