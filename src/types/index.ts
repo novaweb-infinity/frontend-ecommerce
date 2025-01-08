@@ -1,5 +1,6 @@
 import { ApiResponseProps } from "./apiResponseProps"
 import { LoginFormProps, RegisterFormProps, RegisterProps } from "./authProps"
+import { CartProps } from "./cartProps"
 import {
   NewArrivalsProps,
   ProductImageProps,
@@ -22,4 +23,5 @@ export type {
   QueryParamsProductProps,
   LoginFormProps,
   RegisterFormProps,
+  CartProps,
 }

@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-import { ProductsStateProps } from "@/types/productProps"
+import { ProductProps, ProductsStateProps } from "@/types/productProps"
 
 const initialState: ProductsStateProps = {
   items: [],
@@ -10,15 +10,17 @@ const cartReducer = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem: (state, action) => {
+    addItem: (state, action: PayloadAction<ProductProps>) => {
       state.items.push(action.payload)
-      console.log(state.items)
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload)
+      state.items = state.items.filter((item) => item !== action.payload)
     },
     clearCart: (state) => {
       state.items = []
+    },
+    setItem: (state, action) => {
+      state.items = action.payload
     },
   },
 })

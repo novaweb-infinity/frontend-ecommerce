@@ -1,9 +1,11 @@
 import Image from "next/image"
 import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { RootState } from "@/store"
 import { addItem } from "@/store/slices/cartSlice"
 import { ProductProps } from "@/types/productProps"
 
@@ -11,6 +13,8 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
   const dispatch = useDispatch()
 
+  const itemsCart = useSelector((state: RootState) => state.cart.items)
+  console.log(itemsCart)
   const handleAddToCart = () => {
     dispatch(addItem(product))
   }
