@@ -10,8 +10,6 @@ import Login from "../../Auth/Login"
 import NavLinks from "./NavLinks"
 import ToggleTheme from "./ToggleTheme"
 
-const favoriteItems = 2
-
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
 
@@ -23,8 +21,8 @@ export default function Navbar() {
           <h1>tutienda.com</h1>
         </Link>
         <div className="flex items-center justify-between gap-2">
-          <ShoppingSheet icon="cart" cartItems={cartItems} favoriteItems={favoriteItems} />
-          <ShoppingSheet icon="heart" cartItems={cartItems} favoriteItems={favoriteItems} />
+          <ShoppingSheet icon="cart" cartItems={cartItems} favoriteItems={cartItems.length} />
+          <ShoppingSheet icon="heart" cartItems={cartItems} favoriteItems={cartItems.length} />
           <Login />
           <ToggleTheme />
         </div>

@@ -35,10 +35,14 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative px-8 py-6">
+        <Button variant="ghost" size="icon" className="relative px-8 py-6 dark:hover:bg-gray-100">
           {icon === "cart" ? (
             <>
-              {cartItems.length === 0 ? <ShoppingCart className="h-6 w-6" /> : <BaggageClaim className="h-6 w-6" />}
+              {cartItems.length === 0 ? (
+                <ShoppingCart className="h-6 w-6 dark:text-black" />
+              ) : (
+                <BaggageClaim className="h-6 w-6 dark:text-black" />
+              )}
               {cartItems.length > 0 && (
                 <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
                   {cartItems.length}
@@ -46,7 +50,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
               )}
             </>
           ) : (
-            <Heart className="h-6 w-6" />
+            <Heart className="h-6 w-6 dark:text-black" />
           )}
           <span className="sr-only">{icon === "cart" ? "Cesta" : "Favoritos"}</span>
         </Button>
