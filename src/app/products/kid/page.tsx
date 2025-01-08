@@ -1,9 +1,11 @@
+import { JSX } from "react"
+
 import { kidsProductsParams } from "@/api/queryParamsProduct"
 import { getProducts } from "@/api/services/getProducts"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 import ProductsList from "@/components/Products/ProductsList"
 
-export default async function KidsProducts() {
+export default async function KidsProducts(): Promise<JSX.Element> {
   const { data: products } = await getProducts(kidsProductsParams)
 
   return (

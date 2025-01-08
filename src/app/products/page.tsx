@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { JSX, Suspense } from "react"
 
 import AllProductsList from "@/components/Products/AllProductsList"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
@@ -10,7 +10,7 @@ interface PageProps {
   }>
 }
 
-export default async function Products({ searchParams }: PageProps) {
+export default async function Products({ searchParams }: PageProps): Promise<JSX.Element> {
   const params = await searchParams
   const currentPage = Number(params.page) || 1
   const pageSize = 12
