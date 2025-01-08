@@ -1,12 +1,34 @@
-import { Pagination } from "@/lib/pagination"
+"use client"
+
+import { Metadata } from "next"
+import { MetadataContext } from "next/dist/lib/metadata/types/resolvers"
+
+import { ApiResponseProps, ProductProps } from "@/types"
 
 import PaginationControls from "./PaginationController"
 import ProductsGrid from "./ProductsGrid"
 
-export default async function AllProductsList({ currentPage, pageSize }: { currentPage: number; pageSize: number }) {
-  const { data: products, meta } = await Pagination(currentPage, pageSize)
-  const totalPages = Math.ceil(meta.pagination.total / pageSize)
-
+interface Meta {
+  pagination: {
+    page: number
+    pageSize: number
+    pageCount: number
+    total: number
+  }
+}
+export default function AllProductsList({
+  currentPage,
+  pageSize,
+  products,
+  totalPages,
+  meta,
+}: {
+  currentPage: number
+  pageSize: number
+  products: ProductProps[]
+  totalPages: number
+  meta: Meta 
+}) {
   return (
     <>
       <ProductsGrid products={products} />

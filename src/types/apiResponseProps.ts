@@ -1,8 +1,8 @@
 import { ProductProps } from "./productProps"
 
 export interface ApiResponseProps {
-  data: ProductProps[]
-  meta: {
+  data?: ProductProps[]
+  meta?: {
     pagination: {
       page: number
       pageSize: number

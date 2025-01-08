@@ -1,50 +1,32 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
-import { getProducts } from "@/api/services/getProducts"
-import { ProductProps, ProductsStateProps } from "@/types/productProps"
-
-interface Meta {
-  pagination: {
-    total: number
-  }
-}
+import { ProductsStateProps } from "@/types/productProps"
 
 const initialState: ProductsStateProps = {
-  products: [],
-  topSales: [],
-  newArrivals: [],
-
-  meta: {
-    pagination: {
-      total: 0,
-    },
-  },
+  kidsProducts: [],
+  menProducts: [],
+  womenProducts: [],
+  allProducts: [],
 }
-
-export const fetchProducts = createAsyncThunk<{ data: ProductProps[]; meta: Meta }, void, { rejectValue: any }>(
-  "products/fetchProducts",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await getProducts({ populate: "images" })
-      const { data, meta } = response
-
-      return { data, meta }
-    } catch (error) {
-      return rejectWithValue(error)
-    }
-  }
-)
 
 const productReducer = createSlice({
   name: "products",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.products = action.payload.data as ProductProps[]
-      state.meta = action.payload.meta
-    })
+  reducers: {
+    setKidsProducts: (state, action) => {
+      state.kidsProducts = action.payload
+    },
+    setMenProducts: (state, action) => {
+      state.menProducts = action.payload
+    },
+    setWomenProducts: (state, action) => {
+      state.womenProducts = action.payload
+    },
+    setAllProducts: (state, action) => {
+      state.allProducts = action.payload
+    },
   },
 })
 
 export default productReducer.reducer
+export const { setKidsProducts, setMenProducts, setWomenProducts, setAllProducts } = productReducer.actions

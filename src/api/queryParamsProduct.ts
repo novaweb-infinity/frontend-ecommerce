@@ -19,3 +19,11 @@ export const topSalesParams: QueryParamsProductProps = {
   },
   populate: "images",
 }
+
+export const kidsProductsParams: QueryParamsProductProps = {
+    filters: {
+      productCategory: "Niño",
+    },
+    populate: "images",
+  }
+

@@ -2,8 +2,8 @@ export interface QueryParamsProductProps {
   filters?: {
     isFeature?: { $eq: boolean }
     topVentas?: { $eq: boolean }
+    productCategory?: string
   }
-  category?: string
   pagination?: {
     limit?: number
     page?: number

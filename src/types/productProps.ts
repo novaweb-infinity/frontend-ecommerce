@@ -44,11 +44,10 @@ export interface ProductImageProps {
 
 // Type definitions for the products state
 export interface ProductsStateProps {
-  products: ProductProps[]
-  topSales: ProductProps[]
-  newArrivals: ProductProps[]
-
-  meta: any //TODO define the type for the meta object
+  kidsProducts: ProductProps[]
+  menProducts: ProductProps[]
+  womenProducts: ProductProps[]
+  allProducts: ProductProps[]
 }
 
 // Base type for any product list
