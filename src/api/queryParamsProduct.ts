@@ -21,9 +21,22 @@ export const topSalesParams: QueryParamsProductProps = {
 }
 
 export const kidsProductsParams: QueryParamsProductProps = {
-    filters: {
-      productCategory: "Niño",
-    },
-    populate: "images",
-  }
+  filters: {
+    productCategory: "Niño",
+  },
+  populate: "images",
+}
 
+export const menProductsParams: QueryParamsProductProps = {
+  filters: {
+    productCategory: "Hombre",
+  },
+  populate: "images",
+}
+
+export const womenProductsParams: QueryParamsProductProps = {
+  filters: {
+    productCategory: "Mujer",
+  },
+  populate: "images",
+}

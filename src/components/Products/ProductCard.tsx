@@ -1,12 +1,19 @@
 import Image from "next/image"
+import { useDispatch } from "react-redux"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { addItem } from "@/store/slices/cartSlice"
 import { ProductProps } from "@/types/productProps"
 
 export default function ProductCard({ product }: { product: ProductProps }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
+  const dispatch = useDispatch()
+
+  const handleAddToCart = () => {
+    dispatch(addItem(product))
+  }
 
   return (
     <Card className="overflow-hidden">
@@ -32,7 +39,9 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         <div className="text-sm text-gray-600">Tallas: S, M, L, XL</div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full bg-gray-300 font-semibold text-black hover:bg-slate-500">Añadir al carrito</Button>
+        <Button onClick={handleAddToCart} className="w-full bg-gray-300 font-semibold text-black hover:bg-slate-500">
+          Añadir al carrito
+        </Button>
       </CardFooter>
     </Card>
   )

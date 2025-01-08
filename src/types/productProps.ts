@@ -44,10 +44,7 @@ export interface ProductImageProps {
 
 // Type definitions for the products state
 export interface ProductsStateProps {
-  kidsProducts: ProductProps[]
-  menProducts: ProductProps[]
-  womenProducts: ProductProps[]
-  allProducts: ProductProps[]
+  items: ProductProps[]
 }
 
 // Base type for any product list
