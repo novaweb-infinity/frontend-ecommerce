@@ -12,6 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { supabase } from "@/lib/supabaseClient"
 import { LoginFormProps } from "@/types"
 import { loginSchema } from "@/validators/loginSchema"
 
@@ -49,15 +50,36 @@ export default function Login() {
     }
   }, [registerOpen, form])
 
-  const onSubmit = (data: LoginFormProps) => {
+  const onSubmit = async (data: LoginFormProps) => {
     console.log("Datos del formulario:", data)
+
+    try {
+      const { data: signInData, error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      })
+
+      if (error) {
+        console.error("Error al iniciar sesión:", error.message)
+        return
+      }
+      console.log("Usuario logueado correctamente", signInData)
+      setLoginOpen(false)
+      sessionStorage.setItem("supabase.auth.token", JSON.stringify(signInData))
+    } catch (error) {
+      console.error("Error al iniciar sesión:", (error as Error).message)
+    }
   }
 
   return (
     <>
       <Sheet open={loginOpen} onOpenChange={setLoginOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:text-black">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:text-black"
+          >
             <UserCircle />
             <span className="sr-only">Iniciar sesión</span>
           </Button>
@@ -93,8 +115,8 @@ export default function Login() {
                         <Input {...field} type="password" placeholder="••••••••" />
                       </FormControl>
                       <p className="text-xs text-gray-500">
-                        La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una minúscula y un número. Por favor, no repitas el
-                        mismo carácter más de tres veces.
+                        La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una minúscula y un
+                        número. Por favor, no repitas el mismo carácter más de tres veces.
                       </p>
                       <FormMessage />
                     </FormItem>
@@ -104,7 +126,9 @@ export default function Login() {
                   <Controller
                     name="keepLogged"
                     control={form.control}
-                    render={({ field }) => <Checkbox id="keep-logged" checked={field.value} onCheckedChange={field.onChange} />}
+                    render={({ field }) => (
+                      <Checkbox id="keep-logged" checked={field.value} onCheckedChange={field.onChange} />
+                    )}
                   />
                   <Label htmlFor="keep-logged" className="text-sm text-gray-700">
                     Mantén la sesión iniciada

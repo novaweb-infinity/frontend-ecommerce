@@ -1,12 +1,11 @@
 "use client"
 
 import Image from "next/image"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { RootState } from "@/store"
 import { addItem } from "@/store/slices/cartSlice"
 import { ProductProps } from "@/types/productProps"
 

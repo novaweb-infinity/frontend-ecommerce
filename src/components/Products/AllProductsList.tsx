@@ -1,9 +1,6 @@
 "use client"
 
-import { Metadata } from "next"
-import { MetadataContext } from "next/dist/lib/metadata/types/resolvers"
-
-import { ApiResponseProps, ProductProps } from "@/types"
+import { ProductProps } from "@/types"
 
 import PaginationControls from "./PaginationController"
 import ProductsGrid from "./ProductsGrid"
@@ -27,7 +24,7 @@ export default function AllProductsList({
   pageSize: number
   products: ProductProps[]
   totalPages: number
-  meta: Meta 
+  meta: Meta
 }) {
   return (
     <>

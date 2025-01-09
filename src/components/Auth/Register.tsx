@@ -1,19 +1,23 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 
+import apiClient from "@/api/apiClient"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet"
+import { supabase } from "@/lib/supabaseClient"
 import { RegisterFormProps, RegisterProps } from "@/types"
 import { registerSchema } from "@/validators/registerSchema"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
+  const [loading, setLoading] = useState(false)
+
   const form = useForm<RegisterFormProps>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -32,8 +36,31 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
     }
   }, [open, form])
 
-  const onSubmit = (data: RegisterFormProps) => {
-    console.log("Datos del formulario:", data)
+  const onSubmit = async (data: RegisterFormProps) => {
+    setLoading(!loading)
+
+    try {
+      const { data: supabaseResponse, error } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+      })
+
+      if (error) {
+        console.log("Error al registrar el usuario:", error.message)
+      } else {
+        onOpenChange(false)
+        await apiClient.post("/api/custom-users", {
+          data: {
+            email: supabaseResponse.user?.email,
+            supabaseUserId: supabaseResponse.user?.id,
+          },
+        })
+      }
+    } catch (error) {
+      console.error("Error al registrar el usuario:", (error as Error).message)
+    } finally {
+      setLoading(!loading)
+    }
   }
 
   return (
