@@ -7,6 +7,7 @@ import { AppWrapper } from "@/providers/AppWrapper"
 import { montserrat } from "@/utils/fonts"
 
 import "./globals.css"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "E-Commerce",
@@ -28,6 +29,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Toaster  />
         </AppWrapper>
       </body>
     </html>
