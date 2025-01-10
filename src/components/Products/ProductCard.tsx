@@ -18,7 +18,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   }
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="flex h-full flex-col">
       <CardHeader className="p-0">
         <div className="relative h-64 w-full overflow-hidden md:h-72 lg:h-80 xl:h-96">
           <Image
@@ -31,16 +31,18 @@ export default function ProductCard({ product }: { product: ProductProps }) {
           />
         </div>
       </CardHeader>
-      <CardContent className="p-4">
+      <CardContent className="flex flex-1 flex-col justify-between p-4">
         <CardTitle className="mb-2 text-lg font-semibold">{product.productName}</CardTitle>
-        <p className="mb-2 text-sm text-gray-600">{product.description}</p>
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-lg font-bold">{product.price.toFixed(2)}€</span>
-          <Badge className="bg-gray-600 hover:bg-slate-500">{product.productCategory}</Badge>
+        <p className="truncate-description mb-2 text-sm text-gray-600">{product.description}</p>
+        <div className="flex flex-1 flex-col justify-end">
+          <div className="mb-2 flex items-center justify-between">
+            <span className="p-1 text-lg font-bold">{product.price.toFixed(2)}€</span>
+            <Badge className="bg-gray-600 hover:bg-slate-500">{product.productCategory}</Badge>
+          </div>
+          <div className="text-sm text-gray-600">Tallas: S, M, L, XL</div>
         </div>
-        <div className="text-sm text-gray-600">Tallas: S, M, L, XL</div>
       </CardContent>
-      <CardFooter className="p-4 pt-0">
+      <CardFooter className="flex justify-center">
         <Button onClick={handleAddToCart} className="w-full bg-gray-300 font-semibold text-black hover:bg-slate-500">
           Añadir al carrito
         </Button>

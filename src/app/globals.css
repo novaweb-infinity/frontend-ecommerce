@@ -61,9 +61,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -71,4 +69,11 @@
     @apply bg-background text-foreground;
     font-family: var(--font-montserrat);
   }
+}
+
+.truncate-description {
+  @apply overflow-hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
