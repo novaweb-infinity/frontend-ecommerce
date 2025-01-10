@@ -33,13 +33,13 @@ export default function ProductCard({ product }: { product: ProductProps }) {
       </CardHeader>
       <CardContent className="flex flex-1 flex-col justify-between p-4">
         <CardTitle className="mb-2 text-lg font-semibold">{product.productName}</CardTitle>
-        <p className="truncate-description mb-2 text-sm text-gray-600">{product.description}</p>
+        <p className="truncate-description mb-2 text-sm text-gray-600 dark:text-blue-50">{product.description}</p>
         <div className="flex flex-1 flex-col justify-end">
           <div className="mb-2 flex items-center justify-between">
             <span className="p-1 text-lg font-bold">{product.price.toFixed(2)}€</span>
-            <Badge className="bg-gray-600 hover:bg-slate-500">{product.productCategory}</Badge>
+            <Badge className="bg-gray-600 hover:bg-slate-500 dark:text-blue-50">{product.productCategory}</Badge>
           </div>
-          <div className="text-sm text-gray-600">Tallas: S, M, L, XL</div>
+          <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
         </div>
       </CardContent>
       <CardFooter className="flex justify-center">
