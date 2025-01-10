@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 
@@ -17,6 +18,15 @@ import { registerSchema } from "@/validators/registerSchema"
 
 export default function Register({ open, onOpenChange }: RegisterProps) {
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword)
+  }
 
   const form = useForm<RegisterFormProps>({
     resolver: zodResolver(registerSchema),
@@ -93,7 +103,16 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   <FormItem>
                     <FormLabel>Contraseña</FormLabel>
                     <FormControl>
-                      <Input {...field} type="password" placeholder="••••••••" />
+                      <div className="relative">
+                        <Input {...field} type={showPassword ? "text" : "password"} placeholder="••••••••" />
+                        <button
+                          type="button"
+                          onClick={togglePasswordVisibility}
+                          className="absolute inset-y-0 right-0 flex items-center px-2"
+                        >
+                          {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                        </button>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -106,7 +125,16 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   <FormItem>
                     <FormLabel>Repite la contraseña</FormLabel>
                     <FormControl>
-                      <Input {...field} type="password" placeholder="••••••••" />
+                      <div className="relative">
+                        <Input {...field} type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" />
+                        <button
+                          type="button"
+                          onClick={toggleConfirmPasswordVisibility}
+                          className="absolute inset-y-0 right-0 flex items-center px-2"
+                        >
+                          {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                        </button>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

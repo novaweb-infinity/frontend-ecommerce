@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { UserCircle } from "lucide-react"
+import { Eye, EyeOff, UserCircle } from "lucide-react"
 import { useState } from "react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
@@ -21,6 +21,11 @@ import Register from "./Register"
 export default function Login() {
   const [loginOpen, setLoginOpen] = useState(false)
   const [registerOpen, setRegisterOpen] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
   const openRegister = () => {
     setLoginOpen(false)
@@ -112,7 +117,16 @@ export default function Login() {
                     <FormItem>
                       <FormLabel>Contraseña</FormLabel>
                       <FormControl>
-                        <Input {...field} type="password" placeholder="••••••••" />
+                        <div className="relative">
+                          <Input {...field} type={showPassword ? "text" : "password"} placeholder="••••••••" />
+                          <button
+                            type="button"
+                            onClick={togglePasswordVisibility}
+                            className="absolute inset-y-0 right-0 flex items-center px-2"
+                          >
+                            {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                          </button>
+                        </div>
                       </FormControl>
                       <p className="text-xs text-gray-500">
                         La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una minúscula y un
