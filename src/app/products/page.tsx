@@ -2,7 +2,7 @@ import { JSX, Suspense } from "react"
 
 import AllProductsList from "@/components/Products/AllProductsList"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
-import { Pagination } from "@/lib/pagination"
+import { Pagination } from "@/lib//services/pagination"
 
 interface PageProps {
   searchParams: Promise<{
