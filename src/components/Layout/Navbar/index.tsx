@@ -1,8 +1,10 @@
 "use client"
 
+import { get } from "http"
 import Link from "next/link"
 import { useSelector } from "react-redux"
 
+import { getUserProductsFavorites } from "@/api/services/getUserProductsFavorites"
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
 import { RootState } from "@/store"
 

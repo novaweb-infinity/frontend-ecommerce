@@ -27,7 +27,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
     dispatch(removeItem(productId))
   }
 
-  const handleAddToCartOrFavorite = (productId: number) => {
+  const handleAddToCartOrFavorite = (productId: string) => {
     console.log(`Adding product ${productId} to ${activeTab === "favorites" ? "cart" : "favorites"}`)
     // Aquí iría la lógica para añadir el producto a la cesta o a favoritos
   }
