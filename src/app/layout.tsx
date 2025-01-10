@@ -3,11 +3,11 @@ import Head from "next/head"
 
 import Footer from "@/components/Layout/Footer"
 import Navbar from "@/components/Layout/Navbar"
+import { Toaster } from "@/components/ui/toaster"
 import { AppWrapper } from "@/providers/AppWrapper"
 import { montserrat } from "@/utils/fonts"
 
 import "./globals.css"
-import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "E-Commerce",
@@ -29,7 +29,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <Toaster  />
+          <Toaster />
         </AppWrapper>
       </body>
     </html>
