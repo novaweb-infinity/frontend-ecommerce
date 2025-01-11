@@ -1,7 +1,7 @@
 "use client"
 
 import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,7 @@ import { ProductCardSheet } from "./ProductCardSheet"
 interface ShoppingSheetProps {
   icon: "cart" | "heart"
   cartItems: ProductProps[]
-  favoriteItems: number
+  favoriteItems: ProductProps[]
 }
 
 export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetProps) {
@@ -23,14 +23,24 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
 
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    if (open && icon === "heart") {
+      setActiveTab("favorites")
+    } else if (open && icon === "cart") {
+      setActiveTab("cart")
+    }
+  }, [open, icon])
+
   const handleRemove = (productId: number) => {
     dispatch(removeItem(productId))
   }
 
-  const handleAddToCartOrFavorite = (productId: string) => {
+  const handleAddToCartOrFavorite = (productId: number) => {
     console.log(`Adding product ${productId} to ${activeTab === "favorites" ? "cart" : "favorites"}`)
     // Aquí iría la lógica para añadir el producto a la cesta o a favoritos
   }
+
+  const itemsToRender = activeTab === "cart" ? cartItems : favoriteItems
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -50,7 +60,14 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
               )}
             </>
           ) : (
-            <Heart className="h-6 w-6 dark:text-black" />
+            <>
+              <Heart className="h-6 w-6 dark:text-black" />
+              {favoriteItems.length > 0 && (
+                <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
+                  {favoriteItems.length}
+                </span>
+              )}
+            </>
           )}
           <span className="sr-only">{icon === "cart" ? "Cesta" : "Favoritos"}</span>
         </Button>
@@ -63,7 +80,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
                 panel lateral derecho de {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetTitle>
               <SheetDescription className="sr-only">
-                panel lateral donde aparecen todos los elementos guardados en{" "}
+                panel lateral donde aparecen todos los elementos guardados en
                 {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetDescription>
             </div>
@@ -75,12 +92,12 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
                 variant={activeTab === "favorites" ? "default" : "outline"}
                 onClick={() => setActiveTab("favorites")}
               >
-                Favoritos ({favoriteItems})
+                Favoritos ({favoriteItems.length})
               </Button>
             </div>
           </SheetHeader>
           <div className="space-y-4">
-            {cartItems.map((product) => (
+            {itemsToRender.map((product) => (
               <ProductCardSheet
                 key={product.id}
                 product={product}

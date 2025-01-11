@@ -16,7 +16,7 @@ export interface ProductProps {
   isFeature: boolean
   productCategory: null | string
   topVentas: boolean
-  images: ProductImageProps[]
+  images: ProductImageProps[] | []
 }
 
 // Type definitions for the product images
