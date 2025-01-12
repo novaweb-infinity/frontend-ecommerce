@@ -1,5 +1,6 @@
 "use client"
 
+import { HeartIcon } from "lucide-react"
 import Image from "next/image"
 import { useDispatch } from "react-redux"
 
@@ -39,7 +40,12 @@ export default function ProductCard({ product }: { product: ProductProps }) {
             <span className="p-1 text-lg font-bold">{product.price.toFixed(2)}€</span>
             <Badge className="bg-gray-600 hover:bg-slate-500 dark:text-blue-50">{product.productCategory}</Badge>
           </div>
-          <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
+            <Button variant="ghost" className="px-1 py-2 font-semibold text-black hover:bg-gray-100">
+              <HeartIcon className="p-1" size={20} />
+            </Button>
+          </div>
         </div>
       </CardContent>
       <CardFooter className="flex justify-center">

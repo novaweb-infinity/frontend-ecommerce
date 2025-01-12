@@ -6,13 +6,13 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
+import apiClient from "@/api/apiClient"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { supabase } from "@/lib/supabaseClient"
 import { LoginFormProps } from "@/types"
 import { loginSchema } from "@/validators/loginSchema"
 
@@ -59,18 +59,14 @@ export default function Login() {
     console.log("Datos del formulario:", data)
 
     try {
-      const { data: signInData, error } = await supabase.auth.signInWithPassword({
+      const response = await apiClient.post("/api/auth/local", {
         email: data.email,
         password: data.password,
       })
 
-      if (error) {
-        console.error("Error al iniciar sesión:", error.message)
-        return
-      }
-      console.log("Usuario logueado correctamente", signInData)
+      console.log("Usuario logueado correctamente", response.data)
       setLoginOpen(false)
-      sessionStorage.setItem("supabase.auth.token", JSON.stringify(signInData))
+      sessionStorage.setItem("token", response.data.jwt)
     } catch (error) {
       console.error("Error al iniciar sesión:", (error as Error).message)
     }

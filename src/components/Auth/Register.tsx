@@ -12,7 +12,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet"
-import { supabase } from "@/lib/supabaseClient"
 import { RegisterFormProps, RegisterProps } from "@/types"
 import { registerSchema } from "@/validators/registerSchema"
 
@@ -50,22 +49,13 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
     setLoading(!loading)
 
     try {
-      const { data: supabaseResponse, error } = await supabase.auth.signUp({
+      const response = await apiClient.post("/api/auth/local/register", {
+        username: data.email,
         email: data.email,
         password: data.password,
       })
 
-      if (error) {
-        console.log("Error al registrar el usuario:", error.message)
-      } else {
-        onOpenChange(false)
-        await apiClient.post("/api/custom-users", {
-          data: {
-            email: supabaseResponse.user?.email,
-            supabaseUserId: supabaseResponse.user?.id,
-          },
-        })
-      }
+      console.log("Usuario registrado:", response.data)
     } catch (error) {
       console.error("Error al registrar el usuario:", (error as Error).message)
     } finally {
