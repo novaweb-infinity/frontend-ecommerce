@@ -1,10 +1,12 @@
 import axios from "axios"
+import Cookies from "js-cookie"
 
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 10000, // Tiempo de espera
   headers: {
     "Content-Type": "application/json",
+    Authorization: `Bearer ${Cookies.get("token")}`,
   },
 })
 
