@@ -1,12 +1,12 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import Cookies from "js-cookie"
 import { Eye, EyeOff, UserCircle } from "lucide-react"
 import { useState } from "react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
-import apiClient from "@/api/apiClient"
 import { loginUser } from "@/api/services/auth"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -63,7 +63,7 @@ export default function Login() {
       const response = await loginUser(data)
       console.log("Usuario logueado correctamente", response)
       setLoginOpen(false)
-      sessionStorage.setItem("token", response.jwt)
+      Cookies.set("token", response.jwt, { expires: 7, secure: true, sameSite: "strict" })
     } catch (error) {
       console.error("Error al iniciar sesión:", (error as Error).message)
     }
