@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 
 import apiClient from "@/api/apiClient"
+import { registerUser } from "@/api/services/auth"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -49,13 +50,8 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
     setLoading(!loading)
 
     try {
-      const response = await apiClient.post("/api/auth/local/register", {
-        username: data.email,
-        email: data.email,
-        password: data.password,
-      })
-
-      console.log("Usuario registrado:", response.data)
+      const response = await registerUser(data)
+      console.log("Usuario registrado:", response)
     } catch (error) {
       console.error("Error al registrar el usuario:", (error as Error).message)
     } finally {

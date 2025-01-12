@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
 import apiClient from "@/api/apiClient"
+import { loginUser } from "@/api/services/auth"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -59,14 +60,10 @@ export default function Login() {
     console.log("Datos del formulario:", data)
 
     try {
-      const response = await apiClient.post("/api/auth/local", {
-        email: data.email,
-        password: data.password,
-      })
-
-      console.log("Usuario logueado correctamente", response.data)
+      const response = await loginUser(data)
+      console.log("Usuario logueado correctamente", response)
       setLoginOpen(false)
-      sessionStorage.setItem("token", response.data.jwt)
+      sessionStorage.setItem("token", response.jwt)
     } catch (error) {
       console.error("Error al iniciar sesión:", (error as Error).message)
     }
