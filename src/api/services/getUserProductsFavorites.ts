@@ -4,7 +4,15 @@ import apiClient from "../apiClient"
 
 export const getUserProductsFavorites = async () => {
   try {
-    const response = await apiClient.get(`/api/users/me?populate=*`)
+    const response = await apiClient.get("/api/users/me", {
+      params: {
+        populate: {
+          favorites: {
+            populate: "images",
+          },
+        },
+      },
+    })
 
     return response.data
   } catch (error: unknown) {

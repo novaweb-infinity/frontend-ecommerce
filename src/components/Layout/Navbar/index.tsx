@@ -22,7 +22,7 @@ export default function Navbar() {
     const fetchFavorites = async () => {
       const response = await getUserProductsFavorites()
       setFavorites(response.favorites)
-      console.log("Favoritos Ususario:", response)
+      console.log("Favoritos Ususario:", response.favorites)
     }
     fetchFavorites()
   }, [])
