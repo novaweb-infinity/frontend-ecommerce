@@ -6,9 +6,22 @@ const apiClient = axios.create({
   timeout: 10000, // Tiempo de espera
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${Cookies.get("token")}`,
   },
 })
+
+// Interceptor para agregar el token de autorización a cada solicitud
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = Cookies.get("token")
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 apiClient.interceptors.response.use(
   (response) => response, // Si la respuesta es correcta, la devuelve
