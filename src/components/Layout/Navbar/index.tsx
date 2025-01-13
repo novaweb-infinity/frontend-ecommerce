@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 import { getUserProductsFavorites } from "@/api/services/getUserProductsFavorites"
-import Logout from "@/components/Auth/Logout"
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
 import { RootState } from "@/store"
 import { ProductProps } from "@/types"

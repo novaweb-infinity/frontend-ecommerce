@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit"
 
 import cartReducer from "@/store/slices/cartSlice"
+import userReducer from "@/store/slices/userSlice"
 
 // Crear la tienda global
 export const store = configureStore({
   reducer: {
     // Combina reducers (puedes agregar más aquí)
     cart: cartReducer,
+    user: userReducer,
   },
 })
 
