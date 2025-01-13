@@ -1,10 +1,12 @@
 "use client"
 
+import Cookies from "js-cookie"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 import { getUserProductsFavorites } from "@/api/services/getUserProductsFavorites"
+import Logout from "@/components/Auth/Logout"
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
 import { RootState } from "@/store"
 import { ProductProps } from "@/types"
@@ -17,6 +19,8 @@ export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
 
   const [favorites, setFavorites] = useState<ProductProps[]>([])
+
+  const token = Cookies.get("token")
 
   useEffect(() => {
     const fetchFavorites = async () => {

@@ -1,3 +1,5 @@
+import Cookies from "js-cookie"
+
 import apiClient from "../apiClient"
 
 interface RegisterFormProps {
@@ -25,4 +27,8 @@ export const loginUser = async (data: LoginFormProps) => {
     password: data.password,
   })
   return response.data
+}
+
+export const logoutUser = () => {
+  Cookies.remove("token")
 }
