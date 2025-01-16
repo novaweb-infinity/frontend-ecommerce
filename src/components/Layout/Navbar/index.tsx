@@ -1,14 +1,10 @@
 "use client"
 
-import Cookies from "js-cookie"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
-import { getUserProductsFavorites } from "@/api/services/getUserProductsFavorites"
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
 import { RootState } from "@/store"
-import { ProductProps } from "@/types"
 
 import Login from "../../Auth/Login"
 import NavLinks from "./NavLinks"
@@ -16,19 +12,9 @@ import ToggleTheme from "./ToggleTheme"
 
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
+  const favorites = useSelector((state: RootState) => state.user.profile.favorites)
 
-  const [favorites, setFavorites] = useState<ProductProps[]>([])
-
-  const token = Cookies.get("token")
-
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      const response = await getUserProductsFavorites()
-      setFavorites(response.favorites)
-      console.log("Favoritos Ususario:", response.favorites)
-    }
-    fetchFavorites()
-  }, [])
+  console.log("favorites state:", favorites)
 
   return (
     <nav className="fixed z-10 w-full bg-white shadow-md">

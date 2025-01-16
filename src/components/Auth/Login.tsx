@@ -3,17 +3,19 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import Cookies from "js-cookie"
 import { Eye, EyeOff, UserCircle } from "lucide-react"
-import { use, useState } from "react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
+import { useDispatch } from "react-redux"
 
 import { loginUser } from "@/api/services/auth"
+import { getUser } from "@/api/services/user/getUser"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { setUser } from "@/store/slices/userSlice"
 import { LoginFormProps } from "@/types"
 import { loginSchema } from "@/validators/loginSchema"
 
@@ -25,6 +27,7 @@ export default function Login() {
   const [registerOpen, setRegisterOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const dispatch = useDispatch()
 
   const form = useForm<LoginFormProps>({
     resolver: zodResolver(loginSchema),
@@ -74,11 +77,13 @@ export default function Login() {
     console.log("Datos del formulario:", data)
 
     try {
-      const response = await loginUser(data)
-      console.log("Usuario logueado correctamente", response)
+      const loginResponse = await loginUser(data)
+      console.log("Usuario logueado correctamente", loginResponse)
       setLoginOpen(false)
-      Cookies.set("token", response.jwt, { expires: 7, secure: true, sameSite: "strict" })
-    } catch (error) {
+      Cookies.set("token", loginResponse.jwt, { expires: 7, secure: true, sameSite: "strict" })
+      const userData = await getUser()
+      dispatch(setUser(userData))
+    } catch (error: unknown) {
       console.error("Error al iniciar sesión:", (error as Error).message)
     }
   }

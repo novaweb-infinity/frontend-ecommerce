@@ -10,6 +10,7 @@ import {
   TopSalesProps,
 } from "./productProps"
 import { QueryParamsProductProps } from "./queryParamsProductProps"
+import { UserProps } from "./userProps"
 
 export type {
   ApiResponseProps,
@@ -24,4 +25,5 @@ export type {
   LoginFormProps,
   RegisterFormProps,
   CartProps,
+  UserProps,
 }

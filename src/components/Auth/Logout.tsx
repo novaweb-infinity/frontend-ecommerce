@@ -1,14 +1,13 @@
 "use client"
 
-import { on } from "events"
 import Cookies from "js-cookie"
 import { UserCircle } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-
-import Login from "./Login"
+import { clearUser } from "@/store/slices/userSlice"
 
 interface LogoutProps {
   onLogout: () => void
@@ -16,8 +15,11 @@ interface LogoutProps {
 
 export default function Logout({ onLogout }: LogoutProps) {
   const [loginOpen, setLoginOpen] = useState(false)
+  const dispatch = useDispatch()
 
   const handleLogout = () => {
+    Cookies.remove("token")
+    dispatch(clearUser())
     onLogout()
   }
 
