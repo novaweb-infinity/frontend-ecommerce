@@ -37,7 +37,7 @@ export default function Logout({ onLogout }: LogoutProps) {
           </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
-          <div className="space-y-6">
+          <div className="mt-8 space-y-6">
             <SheetTitle className="text-center text-2xl font-bold text-black">CERRAR SESIÓN</SheetTitle>
             <SheetDescription className="text-center text-gray-600">
               ¿Estás seguro de que quieres cerrar sesión?

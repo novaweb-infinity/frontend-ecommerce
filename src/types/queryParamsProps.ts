@@ -1,5 +1,6 @@
-export interface QueryParamsProductProps {
+export interface QueryParamsProps {
   filters?: {
+    isFavorite?: { $eq: boolean }
     isFeature?: { $eq: boolean }
     topVentas?: { $eq: boolean }
     productCategory?: string

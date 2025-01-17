@@ -9,7 +9,7 @@ import {
   ProductsStateProps,
   TopSalesProps,
 } from "./productProps"
-import { QueryParamsProductProps } from "./queryParamsProductProps"
+import { QueryParamsProps } from "./queryParamsProps"
 import { UserProps } from "./userProps"
 
 export type {
@@ -21,7 +21,7 @@ export type {
   NewArrivalsProps,
   TopSalesProps,
   RegisterProps,
-  QueryParamsProductProps,
+  QueryParamsProps,
   LoginFormProps,
   RegisterFormProps,
   CartProps,

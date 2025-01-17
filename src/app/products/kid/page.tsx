@@ -2,6 +2,7 @@ import { JSX } from "react"
 
 import { kidsProductsParams } from "@/api/queryParamsProduct"
 import { getProducts } from "@/api/services/Product/getProducts"
+import ProductPage from "@/components/Products/ProductPage"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 import ProductsList from "@/components/Products/ProductsList"
 

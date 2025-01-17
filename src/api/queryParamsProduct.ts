@@ -1,6 +1,6 @@
-import { QueryParamsProductProps } from "@/types/"
+import { QueryParamsProps } from "@/types/"
 
-export const newArrivalsParams: QueryParamsProductProps = {
+export const newArrivalsParams: QueryParamsProps = {
   filters: {
     isFeature: { $eq: true },
   },
@@ -10,7 +10,7 @@ export const newArrivalsParams: QueryParamsProductProps = {
   populate: "images",
 }
 
-export const topSalesParams: QueryParamsProductProps = {
+export const topSalesParams: QueryParamsProps = {
   filters: {
     topVentas: { $eq: true },
   },
@@ -20,21 +20,21 @@ export const topSalesParams: QueryParamsProductProps = {
   populate: "images",
 }
 
-export const kidsProductsParams: QueryParamsProductProps = {
+export const kidsProductsParams: QueryParamsProps = {
   filters: {
     productCategory: "Niño",
   },
   populate: "images",
 }
 
-export const menProductsParams: QueryParamsProductProps = {
+export const menProductsParams: QueryParamsProps = {
   filters: {
     productCategory: "Hombre",
   },
   populate: "images",
 }
 
-export const womenProductsParams: QueryParamsProductProps = {
+export const womenProductsParams: QueryParamsProps = {
   filters: {
     productCategory: "Mujer",
   },

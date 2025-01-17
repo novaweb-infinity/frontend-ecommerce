@@ -2,9 +2,9 @@ import { isAxiosError } from "axios"
 
 import apiClient from "@/api/apiClient"
 import { ApiResponseProps } from "@/types"
-import { QueryParamsProductProps } from "@/types/queryParamsProductProps"
+import { QueryParamsProps } from "@/types/queryParamsProps"
 
-export const getProducts = async (params: QueryParamsProductProps): Promise<ApiResponseProps> => {
+export const getProducts = async (params: QueryParamsProps): Promise<ApiResponseProps> => {
   try {
     const response = await apiClient.get<ApiResponseProps>("/api/products", {
       params,

@@ -2,6 +2,7 @@
 
 import { HeartIcon } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
 
 import { Badge } from "@/components/ui/badge"
@@ -13,9 +14,29 @@ import { ProductProps } from "@/types/productProps"
 export default function ProductCard({ product }: { product: ProductProps }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const handleAddToCart = () => {
     dispatch(addItem(product))
+  }
+
+  const handleCardImageClick = () => {
+    let categoryPath = ""
+    switch (product.productCategory) {
+      case "Niño":
+        categoryPath = "kid"
+        break
+      case "Hombre":
+        categoryPath = "men"
+        break
+      case "Mujer":
+        categoryPath = "woman"
+        break
+      default:
+        break
+    }
+
+    router.push(`/products/${categoryPath}/${product.documentId}`)
   }
 
   return (
@@ -26,9 +47,10 @@ export default function ProductCard({ product }: { product: ProductProps }) {
             src={imageUrl}
             alt={product.productName}
             fill
-            className="rounded-t-md"
+            className="rounded-t-md transition-transform duration-300 ease-in-out hover:scale-125 hover:cursor-pointer"
             style={{ objectFit: "cover" }}
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            onClick={handleCardImageClick}
           />
         </div>
       </CardHeader>

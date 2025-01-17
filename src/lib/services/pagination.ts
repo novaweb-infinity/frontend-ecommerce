@@ -1,5 +1,5 @@
 import { getProducts } from "@/api/services/Product/getProducts"
-import { QueryParamsProductProps } from "@/types/queryParamsProductProps"
+import { QueryParamsProductProps } from "@/types/queryParamsProps"
 
 export async function Pagination(page: number, pageSize: number) {
   const queryParams: QueryParamsProductProps = {
