@@ -9,10 +9,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { ProductProps } from "@/types"
+import { ProductPageProps } from "@/types/productProps"
 
-export default function ProductPage({ product }) {
-  const imageUrl = product.images?.[0].url
+export default function ProductPage({ product }: ProductPageProps) {
+  const imageUrl = product ? product.images?.[0].url : "/c-1.avif"
 
   return (
     <div className="container mx-auto px-4 py-8">

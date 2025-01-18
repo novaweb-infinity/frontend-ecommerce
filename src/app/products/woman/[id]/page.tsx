@@ -1,18 +1,13 @@
 import { productIdParams } from "@/api/queryParamsProduct"
 import { getProducts } from "@/api/services/Product/getProducts"
 import ProductPage from "@/components/Products/ProductPage"
+import { ProductParamProps } from "@/types/productProps"
 
-interface ProductPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default async function WomanProductPage({ params }: ProductPageProps) {
+export default async function WomanProductPage({ params }: ProductParamProps) {
   const { id } = params
 
   const response = await getProducts(productIdParams(id))
-  const product = response.data[0]
+  const product = response.data ? response.data[0] : null
 
   return (
     <>

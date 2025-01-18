@@ -18,6 +18,17 @@ export interface ProductProps {
   topVentas: boolean
   images: ProductImageProps[] | []
 }
+// Type definitions for the product page
+export interface ProductPageProps {
+  product: ProductProps | null
+}
+
+// Type definitions for the product page params
+export interface ProductParamProps {
+  params: {
+    id: string
+  }
+}
 
 // Type definitions for the product images
 export interface ProductImageProps {
