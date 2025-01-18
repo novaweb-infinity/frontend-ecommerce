@@ -4,7 +4,7 @@ import ProductPage from "@/components/Products/ProductPage"
 import { ProductParamProps } from "@/types/productProps"
 
 export default async function MenProductPage({ params }: ProductParamProps) {
-  const { id } = params
+  const { id } = await params
 
   const response = await getProducts(productIdParams(id))
   const product = response.data ? response.data[0] : null
