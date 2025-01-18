@@ -33,6 +33,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         categoryPath = "woman"
         break
       default:
+        console.log("No category found")
         break
     }
 

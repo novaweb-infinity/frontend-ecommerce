@@ -19,7 +19,6 @@ export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
   const favorites = useSelector((state: RootState) => state.user.profile.favorites)
   const dispatch = useDispatch()
-  console.log("favorites state:", favorites)
   const token = Cookies.get("token")
 
   useEffect(() => {
