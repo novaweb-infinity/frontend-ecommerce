@@ -9,42 +9,42 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { ProductProps } from "@/types"
 
-export default function ProductPage() {
+export default function ProductPage({ product }) {
+  const imageUrl = product.images?.[0].url
+
   return (
-    <div className="container mx-auto my-8 px-4 py-6">
-      <Card className="overflow-hidden">
+    <div className="container mx-auto px-4 py-8">
+      <Card className="mb-6 mt-24 overflow-hidden">
         <CardContent className="p-0">
           <div className="grid gap-8 md:grid-cols-2">
             {/* Product Image */}
             <div className="relative aspect-[3/4] w-full">
-              <Image src="/liftiesImage.webp" alt="Vestido cruzado aberturas" fill className="object-cover" priority />
+              <Image src={imageUrl} alt="Vestido cruzado aberturas" fill className="object-cover" priority />
             </div>
 
             {/* Product Details */}
             <div className="space-y-6 p-6">
               <div className="flex items-start justify-between">
                 <div>
-                  <h1 className="text-2xl font-semibold">Vestido cruzado aberturas</h1>
-                  <div className="mt-2 space-x-2">
-                    <span className="text-lg text-muted-foreground line-through">15,99 €</span>
-                    <span className="text-xl font-bold">5,99 €</span>
+                  <h1 className="text-2xl font-semibold">{product?.productName}</h1>
+                  <div className="mt-2 flex items-center space-x-2">
+                    {/* <span className="text-lg text-muted-foreground line-through">15,99 €</span> */}
+                    <span className="text-xl font-bold">{`${product?.price} €`}</span>
                     <Badge variant="destructive" className="ml-2">
-                      -62%
+                      {product?.productCategory}
                     </Badge>
                   </div>
-                  <p className="mt-2 text-sm text-muted-foreground">Ref: 5081/324/800</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{`Ref: ${product?.id}`}</p>
                 </div>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="p-6">
                   <Heart className="h-5 w-5" />
                 </Button>
               </div>
 
               <div className="space-y-4">
-                <p className="text-sm">
-                  Vestido midi de manga corta y escote en pico con cierre frontal de doble botonadura a contraste.
-                  Cuenta con dos aberturas laterales, es de corte recto y está confeccionado en tejido de canalé.
-                </p>
+                <p className="text-sm">{product?.description}</p>
 
                 {/* Color Selection */}
                 <div className="space-y-2">
@@ -134,7 +134,7 @@ export default function ProductPage() {
                     <AccordionContent>
                       <div className="flex gap-4">
                         <Button variant="outline" size="sm">
-                          <Share2 className="mr-2 h-4 w-4" />
+                          <Share2 className="mr-2 h-4 w-4 p-2" />
                           Copiar enlace
                         </Button>
                       </div>

@@ -1,5 +1,6 @@
 export interface QueryParamsProps {
   filters?: {
+    documentId?: { $eq: string }
     isFavorite?: { $eq: boolean }
     isFeature?: { $eq: boolean }
     topVentas?: { $eq: boolean }

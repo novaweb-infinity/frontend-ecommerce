@@ -1,3 +1,5 @@
+import { productIdParams } from "@/api/queryParamsProduct"
+import { getProducts } from "@/api/services/Product/getProducts"
 import ProductPage from "@/components/Products/ProductPage"
 
 interface ProductPageProps {
@@ -5,18 +7,15 @@ interface ProductPageProps {
     id: string
   }
 }
-export default function MenProductPage({ params }: ProductPageProps) {
+export default async function MenProductPage({ params }: ProductPageProps) {
   const { id } = params
+
+  const response = await getProducts(productIdParams(id))
+  const product = response.data[0]
 
   return (
     <>
-      <div className="flex h-96 w-full flex-col space-y-8 p-8">
-        <h1 className="mt-24 text-4xl font-bold">Página de Producto para Hombre</h1>
-        <p className="mt-2 text-2xl">
-          ID del Producto: <strong>{id}</strong>
-        </p>
-      </div>
-      <ProductPage />
+      <ProductPage product={product} />
     </>
   )
 }
