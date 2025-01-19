@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
+import { userFavoriteProducts } from "@/api/queryParamsUser"
 import { getUser } from "@/api/services/user/getUser"
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
 import { RootState } from "@/store"
@@ -25,7 +26,7 @@ export default function Navbar() {
     const fetchFavorites = async () => {
       try {
         if (token && favorites.length === 0) {
-          const user = await getUser()
+          const user = await getUser(userFavoriteProducts)
           dispatch(setUser(user))
         }
       } catch (error) {

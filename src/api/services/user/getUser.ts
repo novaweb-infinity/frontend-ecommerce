@@ -1,18 +1,13 @@
 import { isAxiosError } from "axios"
-import Cookies from "js-cookie"
+
+import { QueryParamsProps } from "@/types"
 
 import apiClient from "../../apiClient"
 
-export const getUser = async () => {
+export const getUser = async (params: QueryParamsProps) => {
   try {
     const response = await apiClient.get("/api/users/me", {
-      params: {
-        populate: {
-          favorites: {
-            populate: "images",
-          },
-        },
-      },
+      params,
     })
 
     return response.data

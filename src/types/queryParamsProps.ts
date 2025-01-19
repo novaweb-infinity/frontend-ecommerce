@@ -11,5 +11,5 @@ export interface QueryParamsProps {
     page?: number
     pageSize?: number
   }
-  populate?: string
+  populate?: string | { [key: string]: string | { populate: string } }
 }
