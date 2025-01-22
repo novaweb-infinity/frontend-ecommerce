@@ -41,11 +41,18 @@ export const womenProductsParams: QueryParamsProps = {
   populate: "images",
 }
 
-
-
 // export const productIdParams: QueryParamsProps = {
 //   filters: {
 //     documentId: { $eq: documentId },
 //   },
 //   populate: "images",
 // }
+
+export const productIdParams = (documentId: string): QueryParamsProps => {
+  return {
+    filters: {
+      documentId: { $eq: documentId },
+    },
+    populate: "images",
+  }
+}

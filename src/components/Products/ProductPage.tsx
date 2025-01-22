@@ -1,18 +1,30 @@
 "use client"
 
+import Cookies from "js-cookie"
 import { Heart, Share2 } from "lucide-react"
 import Image from "next/image"
+import { number } from "zod"
 
+import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { ProductPageProps } from "@/types/productProps"
+import { ProductPageProps, ProductProps } from "@/types"
 
 export default function ProductPage({ product }: ProductPageProps) {
   const imageUrl = product ? product.images?.[0].url : "/c-1.avif"
+  const token = Cookies.get("token")
+
+  console.log("Producto:", product)
+
+  const handleAddFavorite = async () => {
+    await toogleFavorite(product?.id)
+
+    console.log("Favorito añadido correctamente:", product?.id)
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -38,9 +50,11 @@ export default function ProductPage({ product }: ProductPageProps) {
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">{`Ref: ${product?.id}`}</p>
                 </div>
-                <Button variant="ghost" size="icon" className="p-6">
-                  <Heart className="h-5 w-5" />
-                </Button>
+                {token && (
+                  <Button onClick={handleAddFavorite} variant="ghost" size="icon" className="p-6">
+                    <Heart className="h-5 w-5" />
+                  </Button>
+                )}
               </div>
 
               <div className="space-y-4">

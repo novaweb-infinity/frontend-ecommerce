@@ -62,7 +62,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
           ) : (
             <>
               <Heart className="h-6 w-6 dark:text-black" />
-              {favoriteItems.length > 0 && (
+              {favoriteItems?.length > 0 && (
                 <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
                   {favoriteItems.length}
                 </span>
@@ -92,12 +92,12 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
                 variant={activeTab === "favorites" ? "default" : "outline"}
                 onClick={() => setActiveTab("favorites")}
               >
-                Favoritos ({favoriteItems.length})
+                Favoritos ({favoriteItems?.length})
               </Button>
             </div>
           </SheetHeader>
           <div className="space-y-4">
-            {itemsToRender.map((product) => (
+            {itemsToRender?.map((product) => (
               <ProductCardSheet
                 key={product.id}
                 product={product}

@@ -6,6 +6,7 @@ import {
   ProductImageProps,
   ProductListProps,
   ProductProps,
+  ProductPageProps
   ProductsStateProps,
   TopSalesProps,
 } from "./productProps"
@@ -17,6 +18,7 @@ export type {
   ProductProps,
   ProductListProps,
   ProductImageProps,
+  ProductPageProps,
   ProductsStateProps,
   NewArrivalsProps,
   TopSalesProps,

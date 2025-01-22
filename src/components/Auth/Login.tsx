@@ -6,7 +6,6 @@ import { Eye, EyeOff, UserCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
-import { set } from "zod"
 
 import { loginUser } from "@/api/services/auth"
 import { getUser } from "@/api/services/user/getUser"
@@ -85,7 +84,8 @@ export default function Login() {
       setLoginOpen(false)
       setIsLoggedIn(true)
       Cookies.set("token", loginResponse.jwt, { expires: 7, secure: true, sameSite: "strict" })
-      const userData = await getUser()
+      Cookies.set("userId", loginResponse.user.id, { expires: 7, secure: true, sameSite: "strict" })
+      const userData = await getUser({})
       dispatch(setUser(userData))
     } catch (error: unknown) {
       console.error("Error al iniciar sesión:", (error as Error).message)

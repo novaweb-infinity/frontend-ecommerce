@@ -21,5 +21,6 @@ export const getUser = async (params: QueryParamsProps) => {
         throw new Error("No se recibió respuesta del servidor. Revisa tu conexión e inténtalo más tarde.")
       }
     }
+    throw new Error("Ocurrió un error inesperado. Inténtalo más tarde.")
   }
 }
