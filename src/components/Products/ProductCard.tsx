@@ -52,6 +52,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
             style={{ objectFit: "cover" }}
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             onClick={handleCardImageClick}
+            priority
           />
         </div>
       </CardHeader>
