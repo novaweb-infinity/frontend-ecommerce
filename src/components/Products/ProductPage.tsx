@@ -3,7 +3,7 @@
 import Cookies from "js-cookie"
 import { Heart, Share2 } from "lucide-react"
 import Image from "next/image"
-import { number } from "zod"
+import { useDispatch, useSelector } from "react-redux"
 
 import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -12,18 +12,28 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RootState } from "@/store"
+import { addFavorite, removeFavorite } from "@/store/slices/userSlice"
 import { ProductPageProps, ProductProps } from "@/types"
 
 export default function ProductPage({ product }: ProductPageProps) {
   const imageUrl = product ? product.images?.[0].url : "/c-1.avif"
   const token = Cookies.get("token")
-
-  console.log("Producto:", product)
+  const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
+  const dispatch = useDispatch()
 
   const handleAddFavorite = async () => {
     await toogleFavorite(product?.id)
 
-    console.log("Favorito añadido correctamente:", product?.id)
+    const isFavorite = favorites.some((favorite) => favorite.id === product?.id)
+
+    if (isFavorite) {
+      dispatch(removeFavorite(product?.id))
+      console.log("Favorito eliminado correctamente:", product?.id)
+    } else {
+      dispatch(addFavorite(product as ProductProps))
+      console.log("Favorito añadido correctamente:", product?.id)
+    }
   }
 
   return (

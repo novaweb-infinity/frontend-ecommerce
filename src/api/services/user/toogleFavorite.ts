@@ -26,12 +26,10 @@ export const toogleFavorite = async (productId: number | undefined) => {
       favorites.splice(favoriteIndex, 1)
     }
 
-    console.log("DocumentId del producto en favoritos:", favorites)
     const updateFavoritesResponse = await apiClient.put(`/api/users/${userId}`, {
       favorites,
     })
 
-    console.log("Favoritos actualizados:", updateFavoritesResponse.data.favorites)
     return updateFavoritesResponse.data.favorites
   } catch (error: unknown) {
     if (isAxiosError(error)) {

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-import { UserProps } from "@/types"
+import { ProductProps, UserProps } from "@/types"
 
 const initialState: UserProps = {
   profile: {
@@ -27,8 +27,16 @@ const userReducer = createSlice({
     clearUser: (state) => {
       state.profile = initialState.profile
     },
+    addFavorite: (state, action: PayloadAction<ProductProps>) => {
+      if (!state.profile.favorites.some((favorite) => favorite.id === action.payload.id)) {
+        state.profile.favorites.push(action.payload)
+      }
+    },
+    removeFavorite: (state, action: PayloadAction<number | undefined>) => {
+      state.profile.favorites = state.profile.favorites.filter((favorite) => favorite.id !== action.payload)
+    },
   },
 })
 
 export default userReducer.reducer
-export const { setUser, clearUser } = userReducer.actions
+export const { setUser, clearUser, addFavorite, removeFavorite } = userReducer.actions

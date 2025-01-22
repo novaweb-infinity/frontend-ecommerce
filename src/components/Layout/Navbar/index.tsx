@@ -3,8 +3,7 @@
 import Cookies from "js-cookie"
 import Link from "next/link"
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { userFavoriteProducts } from "@/api/queryParamsUser"
 import { getUser } from "@/api/services/user/getUser"
@@ -18,7 +17,7 @@ import ToggleTheme from "./ToggleTheme"
 
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
-  const favorites = useSelector((state: RootState) => state.user.profile.favorites)
+  const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
   const dispatch = useDispatch()
   const token = Cookies.get("token")
 
@@ -34,7 +33,7 @@ export default function Navbar() {
       }
     }
     fetchFavorites()
-  }, [])
+  }, [token, favorites.length])
 
   return (
     <nav className="fixed z-10 w-full bg-white shadow-md">
