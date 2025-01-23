@@ -23,8 +23,6 @@ export default function ProductPage({ product }: ProductPageProps) {
   const dispatch = useDispatch()
 
   const handleAddFavorite = async () => {
-    await toogleFavorite(product?.id)
-
     const isFavorite = favorites.some((favorite) => favorite.id === product?.id)
 
     if (isFavorite) {
@@ -34,6 +32,7 @@ export default function ProductPage({ product }: ProductPageProps) {
       dispatch(addFavorite(product as ProductProps))
       console.log("Favorito añadido correctamente:", product?.id)
     }
+    await toogleFavorite(product?.id)
   }
 
   return (
@@ -62,7 +61,13 @@ export default function ProductPage({ product }: ProductPageProps) {
                 </div>
                 {token && (
                   <Button onClick={handleAddFavorite} variant="ghost" size="icon" className="p-6">
-                    <Heart className="h-5 w-5" />
+                    <Heart
+                      className={`h-5 w-5 ${
+                        favorites.some((favorite) => favorite.id === product?.id)
+                          ? "fill-red-500 text-red-500" // Relleno rojo si es favorito
+                          : "fill-none text-gray-500" // Contorno gris si no es favorito
+                      }`}
+                    />
                   </Button>
                 )}
               </div>
