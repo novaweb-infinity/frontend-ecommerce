@@ -18,6 +18,7 @@ export default function Logout({ onLogout }: LogoutProps) {
   const dispatch = useDispatch()
 
   const handleLogout = () => {
+    localStorage.clear()
     Cookies.remove("token")
     dispatch(clearUser())
     onLogout()
