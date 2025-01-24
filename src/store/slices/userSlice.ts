@@ -32,7 +32,7 @@ const userReducer = createSlice({
         state.profile.favorites.push(action.payload)
       }
     },
-    removeFavorite: (state, action: PayloadAction<number | undefined>) => {
+    removeFavorite: (state, action: PayloadAction<number>) => {
       state.profile.favorites = state.profile.favorites.filter((favorite) => favorite.id !== action.payload)
     },
   },

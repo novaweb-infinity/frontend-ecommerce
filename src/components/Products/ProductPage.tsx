@@ -26,7 +26,7 @@ export default function ProductPage({ product }: ProductPageProps) {
     const isFavorite = favorites.some((favorite) => favorite.id === product?.id)
 
     if (isFavorite) {
-      dispatch(removeFavorite(product?.id))
+      dispatch(removeFavorite(product?.id as number))
       console.log("Favorito eliminado correctamente:", product?.id)
     } else {
       dispatch(addFavorite(product as ProductProps))

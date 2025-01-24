@@ -1,23 +1,52 @@
 "use client"
 
+import Cookies from "js-cookie"
 import { HeartIcon } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { useDispatch } from "react-redux"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
+import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { RootState } from "@/store"
 import { addItem } from "@/store/slices/cartSlice"
+import { addFavorite, removeFavorite } from "@/store/slices/userSlice"
 import { ProductProps } from "@/types/productProps"
 
 export default function ProductCard({ product }: { product: ProductProps }) {
   const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
+  const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
+  const [isLoading, setIsLoading] = useState(false)
+  const token = Cookies.get("token")
+
   const dispatch = useDispatch()
   const router = useRouter()
 
   const handleAddToCart = () => {
     dispatch(addItem(product))
+  }
+
+  const handleAddFavorite = async () => {
+    setIsLoading(true)
+    const isFavorite = favorites.some((favorite) => favorite.id === product?.id)
+
+    if (isFavorite) {
+      dispatch(removeFavorite(product?.id as number))
+      console.log("Favorito eliminado correctamente:", product?.id)
+    } else {
+      dispatch(addFavorite(product as ProductProps))
+      console.log("Favorito añadido correctamente:", product?.id)
+    }
+    try {
+      await toogleFavorite(product?.id)
+    } catch (error) {
+      console.error("Error al añadir o eliminar favorito:", error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleCardImageClick = () => {
@@ -66,9 +95,18 @@ export default function ProductCard({ product }: { product: ProductProps }) {
           </div>
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
-            <Button variant="ghost" className="px-1 py-2 font-semibold text-black hover:bg-gray-100">
-              <HeartIcon className="p-1" size={20} />
-            </Button>
+
+            {token && (
+              <Button onClick={handleAddFavorite} variant="ghost" size="icon" className="p-6">
+                <HeartIcon
+                  className={`h-5 w-5 ${
+                    favorites.some((favorite) => favorite.id === product?.id)
+                      ? "fill-red-500 text-red-500"
+                      : "fill-none text-gray-500"
+                  }`}
+                />
+              </Button>
+            )}
           </div>
         </div>
       </CardContent>

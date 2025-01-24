@@ -4,9 +4,11 @@ import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
+import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { removeItem } from "@/store/slices/cartSlice"
+import { removeFavorite } from "@/store/slices/userSlice"
 import { ProductProps } from "@/types"
 
 import { ProductCardSheet } from "./ProductCardSheet"
@@ -31,8 +33,15 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
     }
   }, [open, icon])
 
-  const handleRemove = (productId: number) => {
-    dispatch(removeItem(productId))
+  const handleRemove = async (productId: number) => {
+    console.log(`Removing product ${productId} from cart`)
+
+    if (activeTab === "cart") {
+      dispatch(removeItem(productId))
+    } else if (activeTab === "favorites") {
+      dispatch(removeFavorite(productId))
+      await toogleFavorite(productId)
+    }
   }
 
   const handleAddToCartOrFavorite = (productId: number) => {
@@ -61,11 +70,15 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
             </>
           ) : (
             <>
-              <Heart className="h-6 w-6 dark:text-black" />
-              {favoriteItems?.length > 0 && (
-                <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
-                  {favoriteItems.length}
-                </span>
+              {favoriteItems?.length > 0 ? (
+                <div>
+                  <Heart className="h-6 w-6 fill-red-500 dark:text-black" />
+                  <span className="absolute -right-2 -top-2 inline-flex items-center justify-center rounded-full bg-black px-2 py-1 font-bold leading-none text-white">
+                    {favoriteItems.length}
+                  </span>
+                </div>
+              ) : (
+                <Heart className="h-6 w-6 dark:text-black" />
               )}
             </>
           )}

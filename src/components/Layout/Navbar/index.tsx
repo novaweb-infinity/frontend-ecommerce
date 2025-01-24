@@ -33,7 +33,7 @@ export default function Navbar() {
       }
     }
     fetchFavorites()
-  }, [token, favorites.length])
+  }, [token])
 
   return (
     <nav className="fixed z-10 w-full bg-white shadow-md">
