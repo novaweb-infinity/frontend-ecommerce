@@ -1,8 +1,11 @@
 "use client"
 
 import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+
+// Para manejar la navegación en Next.js 13+
 
 import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Button } from "@/components/ui/button"
@@ -24,6 +27,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
   const [activeTab, setActiveTab] = useState<"cart" | "favorites">(icon === "cart" ? "cart" : "favorites")
 
   const dispatch = useDispatch()
+  const router = useRouter() // Hook para manejar la navegación
 
   useEffect(() => {
     if (open && icon === "heart") {
@@ -85,7 +89,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
           <span className="sr-only">{icon === "cart" ? "Cesta" : "Favoritos"}</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
+      <SheetContent side="right" className="flex w-full flex-col justify-between bg-white p-6 sm:w-[400px]">
         <div className="space-y-6">
           <SheetHeader className="flex">
             <div className="mt-8">
@@ -93,7 +97,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
                 panel lateral derecho de {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetTitle>
               <SheetDescription className="sr-only">
-                panel lateral donde aparecen todos los elementos guardados en
+                panel lateral donde aparecen todos los elementos guardados en{" "}
                 {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetDescription>
             </div>
@@ -121,6 +125,22 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
             ))}
           </div>
         </div>
+        {/* Botón adicional solo para la pestaña de "cart" */}
+        {activeTab === "cart" && cartItems.length > 0 && (
+          <div className="mb-6 border-t border-gray-200 pt-4">
+            <Button
+              variant="default"
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                setOpen(false) // Cerrar la sheet
+                router.push("/cart") // Navegar a la página del carrito
+              }}
+            >
+              Ir al carrito
+            </Button>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   )
