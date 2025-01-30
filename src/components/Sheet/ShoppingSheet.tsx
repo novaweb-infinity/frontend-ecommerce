@@ -2,11 +2,10 @@
 
 import { loadStripe } from "@stripe/stripe-js"
 import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
-import { makePaymentRequest } from "@/api/payment"
+import apiClient from "@/api/apiClient"
 import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -60,7 +59,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
   const handleBuyStripe = async () => {
     try {
       const stripe = await stripePromise
-      const response = await makePaymentRequest.post("/api/orders", {
+      const response = await apiClient.post("/api/orders", {
         products: cartItems,
       })
       await stripe?.redirectToCheckout({
@@ -113,7 +112,7 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
                 panel lateral derecho de {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetTitle>
               <SheetDescription className="sr-only">
-                panel lateral donde aparecen todos los elementos guardados en{" "}
+                panel lateral donde aparecen todos los elementos guardados en
                 {activeTab === "cart" ? "la cesta" : "favoritos"}
               </SheetDescription>
             </div>
