@@ -1,10 +1,12 @@
 "use client"
 
+import { loadStripe } from "@stripe/stripe-js"
 import { BaggageClaim, Heart, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
+import { makePaymentRequest } from "@/api/payment"
 import { toogleFavorite } from "@/api/services/user/toogleFavorite"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -51,6 +53,23 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
   }
 
   const itemsToRender = activeTab === "cart" ? cartItems : favoriteItems
+
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "")
+  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+
+  const handleBuyStripe = async () => {
+    try {
+      const stripe = await stripePromise
+      const response = await makePaymentRequest.post("/api/orders", {
+        products: cartItems,
+      })
+      await stripe?.redirectToCheckout({
+        sessionId: response.data.stripeSession.id,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -125,18 +144,19 @@ export function ShoppingSheet({ icon, cartItems, favoriteItems }: ShoppingSheetP
         {/* Botón adicional solo para la pestaña de "cart" */}
         {activeTab === "cart" && cartItems.length > 0 && (
           <div className="mb-4 border-t border-gray-200 pt-4">
-            <Link href="/cart" passHref>
-              <Button
-                variant="default"
-                size="lg"
-                className="w-full"
-                onClick={() => {
-                  setOpen(false)
-                }}
-              >
-                Ir al carrito
-              </Button>
-            </Link>
+            {/* <Link href="/cart" passHref> */}
+            <Button
+              variant="default"
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                setOpen(false)
+                handleBuyStripe()
+              }}
+            >
+              Ir al carrito
+            </Button>
+            {/* </Link> */}
           </div>
         )}
       </SheetContent>
