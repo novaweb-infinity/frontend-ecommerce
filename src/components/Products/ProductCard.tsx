@@ -22,16 +22,17 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
   const [isLoading, setIsLoading] = useState(false)
   const token = Cookies.get("token")
-  const [loggedOut, setLoggedOut] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const dispatch = useDispatch()
   const router = useRouter()
 
   const handleAddToCart = () => {
     if (!token) {
-      setLoggedOut(true)
+      setIsModalOpen(true)
     } else {
       dispatch(addItem(product))
+      setIsModalOpen(false)
     }
   }
 
@@ -77,11 +78,6 @@ export default function ProductCard({ product }: { product: ProductProps }) {
 
   return (
     <>
-      {loggedOut && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
-          <LoginModal />
-        </div>
-      )}
       <Card className="flex h-full flex-col">
         <CardHeader className="p-0">
           <div className="relative h-64 w-full overflow-hidden md:h-72 lg:h-80 xl:h-96">
@@ -97,7 +93,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
             />
           </div>
         </CardHeader>
-        <CardContent className="flex flex-1 flex-col justify-between p-4">
+        <CardContent className="flex flex-1 flex-col justify-between p-6">
           <CardTitle className="mb-2 text-lg font-semibold">{product.productName}</CardTitle>
           <p className="truncate-description mb-2 text-sm text-gray-600 dark:text-blue-50">{product.description}</p>
           <div className="flex flex-1 flex-col justify-end">
@@ -107,7 +103,6 @@ export default function ProductCard({ product }: { product: ProductProps }) {
             </div>
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
-
               {token && (
                 <Button onClick={handleAddFavorite} variant="ghost" size="icon" className="p-6">
                   <HeartIcon
@@ -128,6 +123,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
           </Button>
         </CardFooter>
       </Card>
+      {isModalOpen && <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
     </>
   )
 }

@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator"
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-4xl space-y-10 p-10">
+    <div className="mx-auto mt-20 min-h-screen max-w-4xl space-y-10 p-10">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

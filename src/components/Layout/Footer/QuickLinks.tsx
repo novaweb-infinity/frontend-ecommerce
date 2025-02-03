@@ -1,24 +1,22 @@
-import Link from "next/link"
-
 export default function QuickLinks() {
   return (
     <div>
       <h3 className="mb-4 text-xl font-bold">Enlaces rápidos</h3>
       <ul className="space-y-2">
         <li>
-          <Link href="/about">Sobre nosotros</Link>
+          <a href="/about">Sobre nosotros</a>
         </li>
         <li>
-          <Link href="/help">Ayuda</Link>
+          <a href="/contact">Contacto</a>
         </li>
         <li>
-          <Link href="/contact">Contacto</Link>
+          <a href="/help">Ayuda</a>
         </li>
         <li>
-          <Link href="/terms&conditions">Términos y condiciones</Link>
+          <a href="/privacy">Política de privacidad</a>
         </li>
         <li>
-          <Link href="/privacy">Política de privacidad</Link>
+          <a href="/terms&conditions">Términos y condiciones</a>
         </li>
       </ul>
     </div>

@@ -1,43 +1,35 @@
 "use client"
 
-import { LogIn } from "lucide-react"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
 
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 
-export default function LoginModal() {
-  const [open, setOpen] = useState(false)
+export default function LoginModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const router = useRouter()
+
+  const handleLogin = () => {
+    router.push("/")
+    onClose()
+  }
 
   return (
-    <div className="h-1/3 w-1/2 bg-gray-700">
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button variant="outline">Añadir al carrito</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Iniciar sesión requerido</DialogTitle>
-            <DialogDescription>
-              Para añadir productos al carrito, necesitas iniciar sesión en tu cuenta.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button type="submit" onClick={() => setOpen(false)}>
-              <LogIn className="mr-2 h-4 w-4" />
-              Iniciar sesión
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-sm rounded-2xl p-6">
+        <DialogHeader className="my-2 space-y-6">
+          <DialogTitle className="text-xl font-bold">Inicio de sesión requerido</DialogTitle>
+          <DialogDescription className="text-gray-500">
+            Para añadir productos al carrito, necesitas iniciar sesión en tu cuenta.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogClose asChild></DialogClose>
+      </DialogContent>
+    </Dialog>
   )
 }
