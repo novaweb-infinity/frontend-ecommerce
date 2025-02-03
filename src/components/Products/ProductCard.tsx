@@ -8,6 +8,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { toogleFavorite } from "@/api/services/user/toogleFavorite"
+import LoginModal from "@/components/Modals/LoginModal"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -21,12 +22,17 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
   const [isLoading, setIsLoading] = useState(false)
   const token = Cookies.get("token")
+  const [loggedOut, setLoggedOut] = useState(false)
 
   const dispatch = useDispatch()
   const router = useRouter()
 
   const handleAddToCart = () => {
-    dispatch(addItem(product))
+    if (!token) {
+      setLoggedOut(true)
+    } else {
+      dispatch(addItem(product))
+    }
   }
 
   const handleAddFavorite = async () => {
@@ -70,51 +76,58 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   }
 
   return (
-    <Card className="flex h-full flex-col">
-      <CardHeader className="p-0">
-        <div className="relative h-64 w-full overflow-hidden md:h-72 lg:h-80 xl:h-96">
-          <Image
-            src={imageUrl}
-            alt={product.productName}
-            fill
-            className="rounded-t-md transition-transform duration-300 ease-in-out hover:scale-125 hover:cursor-pointer"
-            style={{ objectFit: "cover" }}
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            onClick={handleCardImageClick}
-            priority
-          />
+    <>
+      {loggedOut && (
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+          <LoginModal />
         </div>
-      </CardHeader>
-      <CardContent className="flex flex-1 flex-col justify-between p-4">
-        <CardTitle className="mb-2 text-lg font-semibold">{product.productName}</CardTitle>
-        <p className="truncate-description mb-2 text-sm text-gray-600 dark:text-blue-50">{product.description}</p>
-        <div className="flex flex-1 flex-col justify-end">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="p-1 text-lg font-bold">{product.price.toFixed(2)}€</span>
-            <Badge className="bg-gray-600 hover:bg-slate-500 dark:text-blue-50">{product.productCategory}</Badge>
+      )}
+      <Card className="flex h-full flex-col">
+        <CardHeader className="p-0">
+          <div className="relative h-64 w-full overflow-hidden md:h-72 lg:h-80 xl:h-96">
+            <Image
+              src={imageUrl}
+              alt={product.productName}
+              fill
+              className="rounded-t-md transition-transform duration-300 ease-in-out hover:scale-125 hover:cursor-pointer"
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              onClick={handleCardImageClick}
+              priority
+            />
           </div>
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
+        </CardHeader>
+        <CardContent className="flex flex-1 flex-col justify-between p-4">
+          <CardTitle className="mb-2 text-lg font-semibold">{product.productName}</CardTitle>
+          <p className="truncate-description mb-2 text-sm text-gray-600 dark:text-blue-50">{product.description}</p>
+          <div className="flex flex-1 flex-col justify-end">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="p-1 text-lg font-bold">{product.price.toFixed(2)}€</span>
+              <Badge className="bg-gray-600 hover:bg-slate-500 dark:text-blue-50">{product.productCategory}</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-600 dark:text-blue-50">Tallas: S, M, L, XL</div>
 
-            {token && (
-              <Button onClick={handleAddFavorite} variant="ghost" size="icon" className="p-6">
-                <HeartIcon
-                  className={`h-5 w-5 ${
-                    favorites.some((favorite) => favorite.id === product?.id)
-                      ? "fill-red-500 text-red-500"
-                      : "fill-none text-gray-500"
-                  }`}
-                />
-              </Button>
-            )}
+              {token && (
+                <Button onClick={handleAddFavorite} variant="ghost" size="icon" className="p-6">
+                  <HeartIcon
+                    className={`h-5 w-5 ${
+                      favorites.some((favorite) => favorite.id === product?.id)
+                        ? "fill-red-500 text-red-500"
+                        : "fill-none text-gray-500"
+                    }`}
+                  />
+                </Button>
+              )}
+            </div>
           </div>
-        </div>
-      </CardContent>
-      <CardFooter className="flex justify-center">
-        <Button onClick={handleAddToCart} className="w-full bg-gray-300 font-semibold text-black hover:bg-slate-500">
-          Añadir al carrito
-        </Button>
-      </CardFooter>
-    </Card>
+        </CardContent>
+        <CardFooter className="flex justify-center">
+          <Button onClick={handleAddToCart} className="w-full bg-gray-300 font-semibold text-black hover:bg-slate-500">
+            Añadir al carrito
+          </Button>
+        </CardFooter>
+      </Card>
+    </>
   )
 }

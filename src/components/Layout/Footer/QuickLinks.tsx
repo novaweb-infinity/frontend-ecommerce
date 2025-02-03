@@ -15,7 +15,7 @@ export default function QuickLinks() {
           <Link href="/contact">Contacto</Link>
         </li>
         <li>
-          <Link href="/terms">Términos y condiciones</Link>
+          <Link href="/terms&conditions">Términos y condiciones</Link>
         </li>
         <li>
           <Link href="/privacy">Política de privacidad</Link>
