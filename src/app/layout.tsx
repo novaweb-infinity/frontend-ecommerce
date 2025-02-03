@@ -20,14 +20,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${montserrat.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className="scrollbar-hide scroll-smooth">
+      <body className={`${montserrat.variable} flex min-h-screen flex-col antialiased`}>
         <AppWrapper>
           <Head>
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Navbar />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer />
           <Toaster />
         </AppWrapper>

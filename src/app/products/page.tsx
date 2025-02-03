@@ -20,7 +20,7 @@ export default async function Products({ searchParams }: PageProps): Promise<JSX
 
   return (
     <section className="container mx-auto px-4 py-8">
-      <h2 className="mb-6 text-3xl font-bold">Todos los productos</h2>
+      <h2 className="mb-6 mt-20 text-3xl font-bold">Todos los productos</h2>
       <Suspense fallback={<ProductListSkeleton />}>
         <AllProductsList
           currentPage={currentPage}
