@@ -8,7 +8,7 @@ export default function NavLinks() {
     { name: "Todos los productos", href: "/products" },
     { name: "Hombre", href: "/products/men" },
     { name: "Mujer", href: "/products/woman" },
-    { name: "Niños", href: "/products/kid" },
+    { name: "Niño", href: "/products/kid" },
   ]
 
   return (

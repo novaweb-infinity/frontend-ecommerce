@@ -6,16 +6,16 @@ export default function Categories() {
       <h3 className="mb-4 text-xl font-bold">Categorías</h3>
       <ul className="space-y-2">
         <li>
-          <Link href="/men">Hombre</Link>
+          <Link href="/products/men">Hombre</Link>
         </li>
         <li>
-          <Link href="/women">Mujer</Link>
+          <Link href="/products/woman">Mujer</Link>
         </li>
         <li>
-          <Link href="/kids">Niños</Link>
+          <Link href="/products/kid">Niño</Link>
         </li>
         <li>
-          <Link href="/accessories">Accesorios</Link>
+          <Link href="/products">Todos los productos</Link>
         </li>
       </ul>
     </div>
