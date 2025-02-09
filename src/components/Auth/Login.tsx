@@ -76,11 +76,9 @@ export default function Login() {
   }, [registerOpen, form])
 
   const onSubmit = async (data: LoginFormProps) => {
-    console.log("Datos del formulario:", data)
-
     try {
       const loginResponse = await loginUser(data)
-      console.log("Usuario logueado correctamente", loginResponse)
+
       setLoginOpen(false)
       setIsLoggedIn(true)
       Cookies.set("token", loginResponse.jwt, { expires: 7, secure: true, sameSite: "strict" })
@@ -88,7 +86,7 @@ export default function Login() {
       const userData = await getUser({})
       dispatch(setUser(userData))
     } catch (error: unknown) {
-      console.error("Error al iniciar sesión:", (error as Error).message)
+      throw new Error("Ocurrió un error inesperado. Inténtalo más tarde.")
     }
   }
 
