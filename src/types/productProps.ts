@@ -26,7 +26,7 @@ export interface ProductPageProps {
 // Type definitions for the product page params
 export interface ProductParamProps {
   params: {
-    id: number
+    id: string
   }
 }
 

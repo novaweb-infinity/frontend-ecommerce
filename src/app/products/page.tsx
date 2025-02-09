@@ -5,14 +5,11 @@ import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 import { Pagination } from "@/lib//services/pagination"
 
 interface PageProps {
-  searchParams: Promise<{
-    page?: string | string[]
-  }>
+  searchParams: { page?: string | string[] }
 }
 
 export default async function Products({ searchParams }: PageProps): Promise<JSX.Element> {
-  const params = await searchParams
-  const currentPage = Number(params.page) || 1
+  const currentPage = Number(searchParams) || 1
   const pageSize = 12
 
   const { data: products, meta } = await Pagination(currentPage, pageSize)
