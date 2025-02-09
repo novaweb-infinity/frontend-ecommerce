@@ -63,7 +63,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
       <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
         <div className="space-y-6">
           <SheetTitle className="text-center text-2xl font-bold text-black">CREA UNA CUENTA</SheetTitle>
-          <SheetDescription className="text-center text-gray-600">
+          <SheetDescription className="text-center dark:text-gray-800">
             Introduce tus datos para registrarte
           </SheetDescription>
           <Form {...form}>
@@ -73,7 +73,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Dirección de correo electrónico</FormLabel>
+                    <FormLabel className="dark:text-gray-800">Dirección de correo electrónico</FormLabel>
                     <FormControl>
                       <Input {...field} placeholder="ejemplo@correo.com" />
                     </FormControl>
@@ -86,7 +86,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Contraseña</FormLabel>
+                    <FormLabel className="dark:text-gray-800">Contraseña</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input {...field} type={showPassword ? "text" : "password"} placeholder="••••••••" />
@@ -108,7 +108,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Repite la contraseña</FormLabel>
+                    <FormLabel className="dark:text-gray-800">Repite la contraseña</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input {...field} type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" />
@@ -155,7 +155,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   </Label>
                 </div>
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full dark:bg-gray-600 dark:text-white dark:hover:bg-gray-700">
                 Regístrate
               </Button>
             </form>

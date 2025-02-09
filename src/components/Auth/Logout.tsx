@@ -31,7 +31,7 @@ export default function Logout({ onLogout }: LogoutProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:text-black"
+            className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:bg-black dark:text-black"
           >
             <UserCircle />
             <span className="sr-only">Cerrar sesión</span>

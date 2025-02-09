@@ -101,7 +101,7 @@ export default function Login() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:text-black"
+                className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:hover:text-black"
               >
                 <UserCircle />
                 <span className="sr-only">Iniciar sesión</span>
@@ -110,7 +110,7 @@ export default function Login() {
             <SheetContent side="right" className="w-full bg-white p-6 sm:w-[400px]">
               <div className="space-y-6">
                 <SheetTitle className="mt-8 text-center text-2xl font-bold text-black">INICIA SESIÓN</SheetTitle>
-                <SheetDescription className="text-center text-gray-600">
+                <SheetDescription className="text-center text-gray-900">
                   Introduce tu dirección de correo electrónico y tu contraseña para acceder.
                 </SheetDescription>
                 <Form {...form}>
@@ -120,9 +120,9 @@ export default function Login() {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Dirección de correo electrónico</FormLabel>
+                          <FormLabel className="dark:text-gray-900">Dirección de correo electrónico</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="ejemplo@correo.com" />
+                            <Input {...field} className="dark:text-black" placeholder="ejemplo@correo.com" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -133,14 +133,19 @@ export default function Login() {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Contraseña</FormLabel>
+                          <FormLabel className="dark:text-gray-900">Contraseña</FormLabel>
                           <FormControl>
                             <div className="relative">
-                              <Input {...field} type={showPassword ? "text" : "password"} placeholder="••••••••" />
+                              <Input
+                                {...field}
+                                className="dark:text-black"
+                                type={showPassword ? "text" : "password"}
+                                placeholder="••••••••"
+                              />
                               <button
                                 type="button"
                                 onClick={togglePasswordVisibility}
-                                className="absolute inset-y-0 right-0 flex items-center px-2"
+                                className="absolute inset-y-0 right-0 flex items-center px-2 dark:text-black"
                               >
                                 {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                               </button>
@@ -166,12 +171,16 @@ export default function Login() {
                         Mantén la sesión iniciada
                       </Label>
                     </div>
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
                       Inicia sesión
                     </Button>
                     <div className="space-y-2 text-center">
-                      <p className="text-sm text-gray-600">¿No tienes cuenta?</p>
-                      <Button variant="outline" className="w-full" onClick={openRegister}>
+                      <p className="text-sm text-gray-900">¿No tienes cuenta?</p>
+                      <Button
+                        variant="outline"
+                        className="w-full dark:border-none dark:bg-gray-300 dark:text-black dark:hover:bg-gray-500"
+                        onClick={openRegister}
+                      >
                         Crea una cuenta
                       </Button>
                     </div>
