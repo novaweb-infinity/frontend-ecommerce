@@ -42,7 +42,13 @@ export default function ProductPage({ product }: ProductPageProps) {
           <div className="grid gap-8 md:grid-cols-2">
             {/* Product Image */}
             <div className="relative aspect-[3/4] w-full">
-              <Image src={imageUrl} alt="Vestido cruzado aberturas" fill className="object-cover" priority />
+              <Image
+                src={imageUrl}
+                alt={product?.description || "Product image"}
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
 
             {/* Product Details */}
@@ -51,7 +57,6 @@ export default function ProductPage({ product }: ProductPageProps) {
                 <div>
                   <h1 className="text-2xl font-semibold">{product?.productName}</h1>
                   <div className="mt-2 flex items-center space-x-2">
-                    {/* <span className="text-lg text-muted-foreground line-through">15,99 €</span> */}
                     <span className="text-xl font-bold">{`${product?.price} €`}</span>
                     <Badge variant="destructive" className="ml-2">
                       {product?.productCategory}

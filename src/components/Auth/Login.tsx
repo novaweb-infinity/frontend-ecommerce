@@ -86,7 +86,7 @@ export default function Login() {
       const userData = await getUser({})
       dispatch(setUser(userData))
     } catch (error: unknown) {
-      throw new Error("Ocurrió un error inesperado. Inténtalo más tarde.")
+      throw new Error(error instanceof Error ? error.message : "Ocurrió un error inesperado. Inténtalo más tarde.")
     }
   }
 

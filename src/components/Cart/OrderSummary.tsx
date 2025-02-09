@@ -2,21 +2,17 @@
 
 import { loadStripe } from "@stripe/stripe-js"
 import { Package, Truck } from "lucide-react"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import apiClient from "@/api/apiClient"
 import { Button } from "@/components/ui/button"
 import { RootState } from "@/store"
-import { clearCart } from "@/store/slices/cartSlice"
 
 export function OrderSummary() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
   const cartPrice = cartItems.reduce((acc, item) => acc + item.price, 0)
   const sendPrice = cartPrice > 50 ? "Envío Gratuito" : 4.99
   const totalPrice = cartPrice > 50 ? cartPrice : cartPrice + 4.99
-
-  const dispatch = useDispatch()
 
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "")
 

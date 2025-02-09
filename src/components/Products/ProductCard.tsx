@@ -37,7 +37,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
   }
 
   const handleAddFavorite = async () => {
-    setIsLoading(true)
+    setIsLoading(!isLoading)
     const isFavorite = favorites.some((favorite) => favorite.id === product?.id)
 
     if (isFavorite) {

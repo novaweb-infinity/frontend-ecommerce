@@ -1,13 +1,4 @@
-"use client"
-
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-
-import { Button } from "@/components/ui/button"
-
 export default function QuickLinks() {
-  const router = useRouter()
-
   return (
     <div>
       <h3 className="mb-4 text-xl font-bold">Enlaces rápidos</h3>

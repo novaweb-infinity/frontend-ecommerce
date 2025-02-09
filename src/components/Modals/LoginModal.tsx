@@ -1,7 +1,3 @@
-"use client"
-
-import { useRouter } from "next/navigation"
-
 import {
   Dialog,
   DialogClose,
@@ -12,13 +8,6 @@ import {
 } from "@/components/ui/dialog"
 
 export default function LoginModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const router = useRouter()
-
-  const handleLogin = () => {
-    router.push("/")
-    onClose()
-  }
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-sm rounded-2xl p-6">

@@ -17,7 +17,7 @@ import NavLinks from "./NavLinks"
 import ToggleTheme from "./ToggleTheme"
 
 export default function Navbar() {
-  let cartItems = useSelector((state: RootState) => state.cart.items)
+  const cartItems = useSelector((state: RootState) => state.cart.items)
 
   const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
   const dispatch = useDispatch()

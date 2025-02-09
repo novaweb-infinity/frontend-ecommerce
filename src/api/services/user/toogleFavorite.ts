@@ -2,6 +2,7 @@ import { isAxiosError } from "axios"
 import Cookies from "js-cookie"
 
 import apiClient from "@/api/apiClient"
+import { ProductProps } from "@/types"
 
 export const toogleFavorite = async (productId: number | undefined) => {
   const userId = Cookies.get("userId")
@@ -19,7 +20,7 @@ export const toogleFavorite = async (productId: number | undefined) => {
 
     const favorites = response.data.favorites || []
 
-    const favoriteIndex = favorites.findIndex((favorite: any) => favorite.id === productId)
+    const favoriteIndex = favorites.findIndex((favorite: ProductProps) => favorite.id === productId)
     if (favoriteIndex === -1) {
       favorites.push({ id: productId })
     } else {

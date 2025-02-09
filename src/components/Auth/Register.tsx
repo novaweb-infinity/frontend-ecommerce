@@ -5,7 +5,6 @@ import { Eye, EyeOff } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 
-import apiClient from "@/api/apiClient"
 import { registerUser } from "@/api/services/auth"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"

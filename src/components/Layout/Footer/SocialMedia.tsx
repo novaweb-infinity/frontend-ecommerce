@@ -1,4 +1,4 @@
-import { Facebook, Globe, Instagram, Twitter, Youtube } from "lucide-react"
+import { Globe, Instagram, Twitter } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -7,18 +7,13 @@ export default function SocialMedia() {
     <div>
       <h3 className="mb-4 text-xl font-bold">Síguenos</h3>
       <div className="flex space-x-4">
-        {/* <Link href="#">
-          <Facebook />
-        </Link> */}
         <Link href="https://www.instagram.com/novawebinfinity/" target="_blank">
           <Instagram />
         </Link>
         <Link href="https://twitter.com/novawebinfinity" target="_blank">
           <Twitter />
         </Link>
-        {/* <Link href="#">
-          <Youtube />
-        </Link> */}
+
         <Link href="#">
           <Globe />
         </Link>

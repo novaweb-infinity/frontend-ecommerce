@@ -6,7 +6,7 @@ import { ProductParamProps } from "@/types/productProps"
 export default async function KidProductPage({ params }: ProductParamProps) {
   const { id } = await params
 
-  const response = await getProducts(productIdParams(id))
+  const response = await getProducts(productIdParams(id.toString()))
   const product = response.data ? response.data[0] : null
 
   return (
