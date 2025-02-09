@@ -5,8 +5,8 @@ import {
   NewArrivalsProps,
   ProductImageProps,
   ProductListProps,
+  ProductPageProps,
   ProductProps,
-  ProductPageProps
   ProductsStateProps,
   TopSalesProps,
 } from "./productProps"

@@ -2,6 +2,7 @@
 
 import { loadStripe } from "@stripe/stripe-js"
 import { Package, Truck } from "lucide-react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import apiClient from "@/api/apiClient"
@@ -25,9 +26,6 @@ export function OrderSummary() {
       const response = await apiClient.post("/api/orders", {
         products: cartItems,
       })
-      if (response.status === 200 && response.data.success) {
-        dispatch(clearCart())
-      }
       await stripe?.redirectToCheckout({
         sessionId: response.data.stripeSession.id,
       })

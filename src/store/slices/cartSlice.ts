@@ -4,7 +4,7 @@ import { toast } from "@/hooks/use-toast"
 import { ProductProps, ProductsStateProps } from "@/types/productProps"
 
 const initialState: ProductsStateProps = {
-  items: JSON.parse(localStorage.getItem("cart") || "[]"),
+  items: [],
 }
 
 const cartReducer = createSlice({
