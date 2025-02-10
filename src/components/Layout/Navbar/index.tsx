@@ -2,14 +2,14 @@
 
 import Cookies from "js-cookie"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { userFavoriteProducts } from "@/api/queryParamsUser"
 import { getUser } from "@/api/services/user/getUser"
 import { ShoppingSheet } from "@/components/Sheet/ShoppingSheet"
 import { RootState } from "@/store"
-import { setItem } from "@/store/slices/cartSlice"
+import { clearCart, setItem } from "@/store/slices/cartSlice"
 import { setUser } from "@/store/slices/userSlice"
 
 import Login from "../../Auth/Login"
@@ -18,10 +18,10 @@ import ToggleTheme from "./ToggleTheme"
 
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
-
   const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
   const dispatch = useDispatch()
   const token = Cookies.get("token")
+  const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -38,13 +38,25 @@ export default function Navbar() {
   }, [token])
 
   useEffect(() => {
-    if (cartItems.length === 0) {
-      const storedCart = localStorage.getItem("cart")
-      if (storedCart) {
-        dispatch(setItem(JSON.parse(storedCart)))
-      }
+    const storedCart = localStorage.getItem("cart")
+    if (storedCart) {
+      dispatch(setItem(JSON.parse(storedCart)))
     }
-  }, [cartItems, dispatch])
+    setIsInitialized(true)
+  }, [dispatch])
+
+  useEffect(() => {
+    if (isInitialized && token) {
+      localStorage.setItem("cart", JSON.stringify(cartItems))
+    }
+  }, [cartItems, token, isInitialized])
+
+  useEffect(() => {
+    if (isInitialized && !token) {
+      dispatch(clearCart())
+      localStorage.removeItem("cart")
+    }
+  }, [token, dispatch, isInitialized])
 
   return (
     <nav className="fixed z-10 w-full bg-white shadow-md">

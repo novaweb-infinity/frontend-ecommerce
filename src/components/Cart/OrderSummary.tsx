@@ -31,15 +31,15 @@ export function OrderSummary() {
   }
 
   return (
-    <div className="mt-2 space-y-6 rounded-lg bg-white">
+    <div className="mt-2 space-y-6 rounded-lg bg-white dark:bg-[hsl(224,25%,30%)]">
       <h2 className="mb-6 text-lg font-medium">Resumen</h2>
       <div className="space-y-4">
-        <div className="space-y-3 rounded-lg bg-blue-50 p-4">
-          <div className="flex items-center gap-3 text-blue-600">
+        <div className="space-y-3 rounded-lg bg-blue-50 p-4 dark:bg-[hsl(224,25%,30%)]">
+          <div className="flex items-center gap-3 text-blue-600 dark:text-yellow-500">
             <Package className="h-5 w-5" />
             <span className="font-medium">Envío a {sendPrice} €</span>
           </div>
-          <div className="flex items-start gap-3 text-blue-600">
+          <div className="flex items-start gap-3 text-blue-600 dark:text-yellow-500">
             <Truck className="mt-1 h-5 w-5" />
             <div>
               <div className="font-medium">Envío gratuito en la tienda</div>
@@ -47,11 +47,11 @@ export function OrderSummary() {
           </div>
         </div>
         <div className="space-y-2">
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
             <span>Subtotal</span>
             <span>{cartPrice.toFixed(2)} €</span>
           </div>
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
             <span>Envío</span>
             <span>{sendPrice} €</span>
           </div>

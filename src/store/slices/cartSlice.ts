@@ -27,7 +27,6 @@ const cartReducer = createSlice({
           style: { background: "#e66300", color: "#fff" },
         })
       }
-      localStorage.setItem("cart", JSON.stringify(state.items))
     },
     removeItem: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
@@ -36,15 +35,12 @@ const cartReducer = createSlice({
         description: "Producto eliminado del carrito",
         variant: "destructive",
       })
-      localStorage.setItem("cart", JSON.stringify(state.items))
     },
     clearCart: (state) => {
       state.items = []
-      localStorage.setItem("cart", JSON.stringify(state.items))
     },
     setItem: (state, action) => {
-      state.items = action.payload
-      localStorage.setItem("cart", JSON.stringify(state.items))
+      state.items = action.payload || []
     },
   },
 })

@@ -75,7 +75,7 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                   <FormItem>
                     <FormLabel className="dark:text-gray-800">Dirección de correo electrónico</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="ejemplo@correo.com" />
+                      <Input {...field} type="email" placeholder="ejemplo@correo.com" autoComplete="email" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,7 +89,12 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                     <FormLabel className="dark:text-gray-800">Contraseña</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input {...field} type={showPassword ? "text" : "password"} placeholder="••••••••" />
+                        <Input
+                          {...field}
+                          type={showPassword ? "text" : "password"}
+                          placeholder="••••••••"
+                          autoComplete="current-password"
+                        />
                         <button
                           type="button"
                           onClick={togglePasswordVisibility}
@@ -111,7 +116,12 @@ export default function Register({ open, onOpenChange }: RegisterProps) {
                     <FormLabel className="dark:text-gray-800">Repite la contraseña</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input {...field} type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" />
+                        <Input
+                          {...field}
+                          type={showConfirmPassword ? "text" : "password"}
+                          placeholder="••••••••"
+                          autoComplete="current-password"
+                        />
                         <button
                           type="button"
                           onClick={toggleConfirmPasswordVisibility}

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import Cookies from "js-cookie"
-import { Eye, EyeOff, UserCircle } from "lucide-react"
+import { Eye, EyeOff, Icon, UserCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
@@ -15,7 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { setUser } from "@/store/slices/userSlice"
+import { clearUser, setUser } from "@/store/slices/userSlice"
 import { LoginFormProps } from "@/types"
 import { loginSchema } from "@/validators/loginSchema"
 
@@ -28,6 +28,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const dispatch = useDispatch()
+  const token = Cookies.get("token")
 
   const form = useForm<LoginFormProps>({
     resolver: zodResolver(loginSchema),
@@ -40,6 +41,7 @@ export default function Login() {
 
   const handleLogout = () => {
     Cookies.remove("token")
+    dispatch(clearUser())
     setIsLoggedIn(false)
     setLoginOpen(false)
     console.log("Usuario deslogueado correctamente")
@@ -55,11 +57,10 @@ export default function Login() {
   }
 
   useEffect(() => {
-    const token = Cookies.get("token")
     if (token) {
       setIsLoggedIn(true)
     }
-  }, [])
+  }, [token])
 
   useEffect(() => {
     if (!loginOpen) {
@@ -81,7 +82,11 @@ export default function Login() {
 
       setLoginOpen(false)
       setIsLoggedIn(true)
-      Cookies.set("token", loginResponse.jwt, { expires: 7, secure: true, sameSite: "strict" })
+      Cookies.set("token", loginResponse.jwt, {
+        expires: 7,
+        secure: true,
+        sameSite: "strict",
+      })
       Cookies.set("userId", loginResponse.user.id, { expires: 7, secure: true, sameSite: "strict" })
       const userData = await getUser({})
       dispatch(setUser(userData))
@@ -97,13 +102,13 @@ export default function Login() {
       ) : (
         <div>
           <Sheet open={loginOpen} onOpenChange={setLoginOpen}>
-            <SheetTrigger asChild>
+            <SheetTrigger>
               <Button
                 variant="ghost"
                 size="icon"
                 className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:hover:text-black"
               >
-                <UserCircle />
+                <UserCircle size={48} />
                 <span className="sr-only">Iniciar sesión</span>
               </Button>
             </SheetTrigger>
@@ -122,7 +127,13 @@ export default function Login() {
                         <FormItem>
                           <FormLabel className="dark:text-gray-900">Dirección de correo electrónico</FormLabel>
                           <FormControl>
-                            <Input {...field} className="dark:text-black" placeholder="ejemplo@correo.com" />
+                            <Input
+                              {...field}
+                              className="dark:text-black"
+                              type="email"
+                              placeholder="ejemplo@correo.com"
+                              autoComplete="email"
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -141,6 +152,7 @@ export default function Login() {
                                 className="dark:text-black"
                                 type={showPassword ? "text" : "password"}
                                 placeholder="••••••••"
+                                autoComplete="current-password"
                               />
                               <button
                                 type="button"
