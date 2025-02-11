@@ -59,7 +59,7 @@ export default function Navbar() {
   }, [token, dispatch, isInitialized])
 
   return (
-    <nav className="fixed z-10 w-full bg-white shadow-md">
+    <nav className="fixed z-10 mx-auto w-full bg-white shadow-md">
       <div className="grid grid-cols-1 gap-y-0 px-4 py-4 md:gap-y-2 xl:grid-cols-3 xl:items-center xl:gap-y-0">
         {/* Título y Iconos para pantallas pequeñas */}
         <div className="flex items-center justify-between xl:hidden">
