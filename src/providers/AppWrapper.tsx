@@ -8,7 +8,7 @@ import store from "@/store"
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   return (
     <Provider store={store}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
         {children}
       </ThemeProvider>
     </Provider>

@@ -22,7 +22,7 @@ export default function Logout({ onLogout }: LogoutProps) {
     Cookies.remove("token")
     dispatch(clearUser())
     dispatch(clearCart())
-    // localStorage.removeItem("cart")
+    localStorage.removeItem("cart")
     localStorage.clear()
     onLogout()
   }

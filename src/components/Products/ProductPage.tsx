@@ -37,7 +37,7 @@ export default function ProductPage({ product }: ProductPageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Card className="mb-6 mt-24 overflow-hidden">
+      <Card className="mb-6 mt-40 overflow-hidden xl:mt-24">
         <CardContent className="p-0">
           <div className="grid gap-8 md:grid-cols-2">
             {/* Product Image */}

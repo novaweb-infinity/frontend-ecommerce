@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import Cookies from "js-cookie"
-import { Eye, EyeOff, Icon, UserCircle } from "lucide-react"
+import { Eye, EyeOff, UserCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
@@ -15,7 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { clearUser, setUser } from "@/store/slices/userSlice"
+import { setUser } from "@/store/slices/userSlice"
 import { LoginFormProps } from "@/types"
 import { loginSchema } from "@/validators/loginSchema"
 
@@ -41,7 +41,6 @@ export default function Login() {
 
   const handleLogout = () => {
     Cookies.remove("token")
-    dispatch(clearUser())
     setIsLoggedIn(false)
     setLoginOpen(false)
     console.log("Usuario deslogueado correctamente")
@@ -102,13 +101,13 @@ export default function Login() {
       ) : (
         <div>
           <Sheet open={loginOpen} onOpenChange={setLoginOpen}>
-            <SheetTrigger>
+            <SheetTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
                 className="rounded-lg px-8 py-6 text-black hover:bg-gray-100 dark:hover:text-black"
               >
-                <UserCircle size={48} />
+                <UserCircle />
                 <span className="sr-only">Iniciar sesión</span>
               </Button>
             </SheetTrigger>
