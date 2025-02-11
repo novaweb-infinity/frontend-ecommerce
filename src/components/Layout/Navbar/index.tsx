@@ -14,7 +14,6 @@ import { setUser } from "@/store/slices/userSlice"
 
 import Login from "../../Auth/Login"
 import NavLinks from "./NavLinks"
-import ToggleTheme from "./ToggleTheme"
 
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items)
