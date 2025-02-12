@@ -73,7 +73,7 @@ export default function Navbar() {
         </div>
 
         {/* NavLinks para pantallas pequeñas y grandes */}
-        <div className="w-full xl:justify-start">
+        <div className="z-10 w-full xl:justify-start">
           <NavLinks />
         </div>
 

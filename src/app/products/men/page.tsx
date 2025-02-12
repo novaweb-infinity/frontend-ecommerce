@@ -5,8 +5,11 @@ import { getProducts } from "@/api/services/Product/getProducts"
 import { ProductListSkeleton } from "@/components/Products/ProductSkeleton"
 import ProductsList from "@/components/Products/ProductsList"
 
+export const dynamic = "force-dynamic"
 export default async function MenProducts(): Promise<JSX.Element> {
   const { data: products } = await getProducts(menProductsParams)
+
+  if (!products) return <ProductListSkeleton />
 
   return (
     <section className="container mx-auto px-4 py-8">
