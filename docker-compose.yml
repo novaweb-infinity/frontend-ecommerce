@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     environment:
       NEXT_PUBLIC_API_BASE_URL: http://localhost:1337
+      NEXT_PUBLIC_STRIPE_PUBLIC_KEY: "pk_test_51QmJ9fP2e90YVnJD4rFUspk6gAAQX6apTWERLoPpBYhwANzbahLD1JNF0o0eLU5DgJnj5lvVNm2CbnKF0lpU8Cst00YFrJll8w"
       NODE_ENV: production
     volumes:
       - .:/app
