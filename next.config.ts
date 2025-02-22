@@ -2,7 +2,12 @@ import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["localhost", "res.cloudinary.com", "images.unsplash.com"], // Agrega aquí los dominios desde los que cargarás imágenes
+    domains: [
+      "localhost",
+      "res.cloudinary.com",
+      "images.unsplash.com",
+      "ec2-3-122-233-89.eu-central-1.compute.amazonaws.com",
+    ], // Agrega aquí los dominios desde los que cargarás imágenes
   },
   // Otras configuraciones de Next.js
 }
