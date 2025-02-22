@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       "localhost",
       "res.cloudinary.com",
       "images.unsplash.com",
-      "http://ec2-3-72-39-16.eu-central-1.compute.amazonaws.com",
+      "ec2-3-72-39-16.eu-central-1.compute.amazonaws.com",
     ], // Agrega aquí los dominios desde los que cargarás imágenes
   },
   // Otras configuraciones de Next.js
