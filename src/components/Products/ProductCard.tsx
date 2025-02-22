@@ -18,7 +18,7 @@ import { addFavorite, removeFavorite } from "@/store/slices/userSlice"
 import { ProductProps } from "@/types/productProps"
 
 export default function ProductCard({ product }: { product: ProductProps }) {
-  const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/c-1.avif"
+  const imageUrl = product.images?.length > 0 ? `${product.images[0].url}` : "/logo.png"
   const favorites = useSelector((state: RootState) => state.user.profile.favorites) || []
   const [isLoading, setIsLoading] = useState(false)
   const token = Cookies.get("token")
