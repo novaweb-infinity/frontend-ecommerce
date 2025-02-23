@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { setUser } from "@/store/slices/userSlice"
-import { LoginFormProps } from "@/types"
+import { LoginFormProps } from "@/types/index"
 import { loginSchema } from "@/validators/loginSchema"
 
 import Logout from "./Logout"
