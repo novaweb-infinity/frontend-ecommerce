@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       "ec2-3-72-39-16.eu-central-1.compute.amazonaws.com",
     ], // Agrega aquí los dominios desde los que cargarás imágenes
     formats: ["image/avif", "image/webp"],
-    // unoptimized: true,
+    unoptimized: true,
   },
   // Otras configuraciones de Next.js
 }
